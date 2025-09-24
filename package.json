@@ -1,0 +1,43 @@
+{
+  "name": "baseline-search",
+  "version": "0.0.1",
+  "description": "Web機能データの詳細検索・閲覧CLIツール - Web Features Baseline Search Tool",
+  "type": "module",
+  "main": "dist/main.js",
+  "bin": {
+    "baseline-search": "./dist/main.js"
+  },
+  "scripts": {
+    "build": "npx tsc main.ts --outDir dist --target ES2022 --module ESNext --moduleResolution bundler --skipLibCheck --jsx react-jsx --allowSyntheticDefaultImports",
+    "start": "npm run build && node dist/main.js",
+    "dev": "npm run build && node dist/main.js",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "package.json"
+  ],
+  "keywords": [
+    "web-features",
+    "cli",
+    "browser-support",
+    "baseline"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "compute-baseline": "latest",
+    "ink": "^4.4.1",
+    "react": "^18.2.0",
+    "web-features": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "@types/react": "^18.2.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
