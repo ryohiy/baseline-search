@@ -103,8 +103,8 @@ const InkSearchPaginationApp: React.FC<{ onExit: (result: SearchPaginationResult
       return;
     }
 
-    if (input === '/' || input === 's') {
-      // /キーまたはsキーで検索モードに切り替え
+    if ((input === '/' || input === 's') && !isSearchMode) {
+      // /キーまたはsキーで検索モードに切り替え（検索モード中は除く）
       setIsSearchMode(true);
       return;
     }
