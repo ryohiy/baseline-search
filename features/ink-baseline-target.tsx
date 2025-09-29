@@ -265,11 +265,17 @@ const FeatureSelectionApp: React.FC<{
           
           {featuresForYear.slice(visibleStart, visibleStart + VISIBLE_ITEMS).map((feature, index) => {
             const actualIndex = visibleStart + index;
+            const isBaslineHigh = feature.status?.baseline === 'high';
+            const isBaslineLow = feature.status?.baseline === 'low';
+            const isBaslineFalse = feature.status?.baseline === false;
             return (
               <Box key={feature.key}>
                 <Text color={actualIndex === selectedIndex ? 'black' : 'white'} 
                       backgroundColor={actualIndex === selectedIndex ? 'cyan' : undefined}>
                   {actualIndex === selectedIndex ? '► ' : '  '}
+                  {isBaslineHigh && <Text color="green">● </Text>}
+                  {isBaslineLow && <Text color="blue">● </Text>}
+                  {isBaslineFalse && <Text color="#E56910">● </Text>}
                   {feature.key}
                   {feature.name ? ` - ${feature.name}` : ''}
                   <Text color="gray"> ({feature.status?.baseline_low_date})</Text>

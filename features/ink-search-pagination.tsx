@@ -204,21 +204,29 @@ const InkSearchPaginationApp: React.FC<{ onExit: (result: SearchPaginationResult
 
       {currentPageFeatures.length > 0 && (
         <Box flexDirection="column" marginBottom={1}>
-          {currentPageFeatures.map((feature, index) => (
-            <Box key={feature.key}>
-              <Text 
-                color={index === selectedIndex ? 'black' : 'white'} 
-                backgroundColor={index === selectedIndex ? 'cyan' : undefined}
-              >
-                {index === selectedIndex ? '► ' : '  '}
-                {feature.key}
-                {feature.kind === 'feature' && feature.name 
-                  ? ` - ${feature.name}` 
-                  : ` (${feature.kind})`
-                }
-              </Text>
-            </Box>
-          ))}
+          {currentPageFeatures.map((feature, index) => {
+            const isBaslineHigh = feature.status?.baseline === 'high';
+            const isBaslineLow = feature.status?.baseline === 'low';
+            const isBaslineFalse = feature.status?.baseline === false;
+            return (
+              <Box key={feature.key}>
+                <Text 
+                  color={index === selectedIndex ? 'black' : 'white'} 
+                  backgroundColor={index === selectedIndex ? 'cyan' : undefined}
+                >
+                  {index === selectedIndex ? '► ' : '  '}
+                  {isBaslineHigh && <Text color="green">● </Text>}
+                  {isBaslineLow && <Text color="blue">● </Text>}
+                  {isBaslineFalse && <Text color="#E56910">● </Text>}
+                  {feature.key}
+                  {feature.kind === 'feature' && feature.name 
+                    ? ` - ${feature.name}` 
+                    : ` (${feature.kind})`
+                  }
+                </Text>
+              </Box>
+            );
+          })}
         </Box>
       )}
 

@@ -99,7 +99,7 @@ const InkFeatureDetailApp: React.FC<FeatureDetailProps> = ({ featureKey, feature
             <Box marginLeft={2} flexDirection="column">
               <Box>
                 <Text color="yellow">baseline: </Text>
-                <Text>{featureData.status.baseline}</Text>
+                <Text>{String(featureData.status.baseline)}</Text>
               </Box>
               
               {featureData.status.baseline_low_date && (
@@ -226,7 +226,7 @@ const InkFeatureDetailApp: React.FC<FeatureDetailProps> = ({ featureKey, feature
                     <Box marginLeft={4} flexDirection="column">
                       <Box>
                         <Text color="yellow">baseline: </Text>
-                        <Text>{baselineInfo.baseline}</Text>
+                        <Text>{String(baselineInfo.baseline)}</Text>
                       </Box>
                       {baselineInfo.baseline_low_date && (
                         <Box>
