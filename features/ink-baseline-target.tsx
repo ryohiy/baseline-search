@@ -355,3 +355,26 @@ export function startFeatureSelection(year: string): Promise<FeatureSelectionRes
     unmountFunction = unmount;
   });
 }
+
+// Baseline Target統合関数
+export async function startInkBaselineTarget(): Promise<FeatureSelectionResult> {
+  while (true) {
+    // まず年を選択
+    const yearResult = await startYearSelection();
+    
+    if (yearResult.cancelled || !yearResult.selectedYear) {
+      return { selectedFeature: null, cancelled: true };
+    }
+    
+    // 選択された年の機能一覧を表示
+    const featureResult = await startFeatureSelection(yearResult.selectedYear);
+    
+    if (featureResult.cancelled) {
+      // 機能選択がキャンセルされた場合は年選択に戻る
+      continue;
+    }
+    
+    // 機能が選択された場合、または何も選択されなかった場合は結果を返す
+    return featureResult;
+  }
+}
