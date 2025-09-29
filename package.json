@@ -8,10 +8,12 @@
     "baseline-search": "./dist/main.js"
   },
   "scripts": {
-    "build": "npx tsc main.ts --outDir dist --target ES2022 --module ESNext --moduleResolution bundler --skipLibCheck --jsx react-jsx --allowSyntheticDefaultImports",
-    "start": "npm run build && node dist/main.js",
+    "build": "npx tsc",
+    "build:minify": "npm run build && npm run minify",
+    "minify": "find dist -name '*.js' -exec npx terser {} --compress --mangle --output {} \\;",
+    "start": "npm run build:minify && node dist/main.js",
     "dev": "npm run build && node dist/main.js",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build:minify"
   },
   "files": [
     "dist/",
@@ -35,6 +37,7 @@
   "devDependencies": {
     "@types/node": "^24.5.2",
     "@types/react": "^18.2.0",
+    "terser": "^5.44.0",
     "typescript": "^5.0.0"
   },
   "engines": {
