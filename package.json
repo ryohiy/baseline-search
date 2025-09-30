@@ -1,6 +1,6 @@
 {
   "name": "baseline-search",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A CLI tool to search and browse Baseline information from the terminal.",
   "type": "module",
   "main": "dist/main.js",
