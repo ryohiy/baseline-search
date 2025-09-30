@@ -274,7 +274,7 @@ const FeatureSelectionApp: React.FC<{
                       backgroundColor={actualIndex === selectedIndex ? 'cyan' : undefined}>
                   {actualIndex === selectedIndex ? '► ' : '  '}
                   {isBaslineHigh && <Text color="green">● </Text>}
-                  {isBaslineLow && <Text color="blue">● </Text>}
+                  {isBaslineLow && <Text color="#1D7AFC">● </Text>}
                   {isBaslineFalse && <Text color="#E56910">● </Text>}
                   {feature.key}
                   {feature.name ? ` - ${feature.name}` : ''}

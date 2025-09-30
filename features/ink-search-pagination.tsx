@@ -216,7 +216,7 @@ const InkSearchPaginationApp: React.FC<{ onExit: (result: SearchPaginationResult
                 >
                   {index === selectedIndex ? '► ' : '  '}
                   {isBaslineHigh && <Text color="green">● </Text>}
-                  {isBaslineLow && <Text color="blue">● </Text>}
+                  {isBaslineLow && <Text color="#1D7AFC">● </Text>}
                   {isBaslineFalse && <Text color="#E56910">● </Text>}
                   {feature.key}
                   {feature.kind === 'feature' && feature.name 
