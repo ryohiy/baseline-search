@@ -1,97 +1,93 @@
-# BaselineXplorer
+# Baseline Search
 
-Web機能データの詳細検索・閲覧CLIツールです。web-featuresライブラリを使用してWebプラットフォーム機能の情報を表示します。
+🔍 A CLI tool to instantly search and explore web platform baseline support information directly from your terminal.
 
-## 機能
+## Quick Start
 
-### 1. フリーワード検索（ページネーション+フリーワード）
-- **リアルタイム検索**: 入力と同時に候補表示
-- **ページネーション**: 大量の機能データを効率的にブラウズ
-- **視覚的ナビゲーション**: ハイライト表示で現在位置を明確化
-- **キーボードショートカット**: 
-  - ↑↓: 選択移動
-  - ←→: ページ移動
-  - /またはs: 検索モード切り替え
-  - Enter: 決定
-  - ESC/q: キャンセル
-  - Ctrl+C: 検索クリア
-  - 数字キー (1-9): ページジャンプ
+No installation required! Run with npx:
 
-### 2. Baseline Target（年別一覧）
-- **年別機能一覧**: baseline_low_date基準で年別に機能を整理
-- **機能数表示**: 各年の利用可能機能数を表示
-- **日付順ソート**: 年内では日付順で機能を表示
-- **詳細情報**: 各機能のbaseline日付も確認可能
+```bash
+# English (default)
+npx baseline-search
 
-## インストールと実行
+# Japanese
+npx baseline-search --ja
+```
 
-### 依存関係のインストール
-```sh
+## What is Baseline?
+
+**Baseline** identifies web platform features that are safe to use in your projects. When a feature becomes "Baseline", it's supported across all major browsers and is ready for production use.
+
+## Use Cases
+
+- **🚀 Feature Planning**: Check if new web APIs are ready for your project
+- **📊 Browser Support**: Get instant baseline status for any web feature  
+- **🕒 Timeline Tracking**: See when features became baseline by year
+- **⚡ Quick Reference**: Search web features without leaving your terminal
+- **🔄 CI/CD Integration**: Automate baseline checks in your development pipeline
+
+## Features
+
+### 🔍 Free Text Search
+- **Real-time search** with instant results
+- **Pagination support** for browsing large datasets
+- Search by feature ID or name
+- Interactive keyboard navigation
+
+### 📅 Baseline Target (By Year)
+- Browse features that became baseline by year
+- See release dates and browser support timeline
+- Discover what's newly available each year
+
+### 🌍 Multi-language Support
+- English (default)
+- Japanese (`--ja`)
+
+## CLI Interface
+
+```
+=== WEB FEATURES DOCS CLI ===
+Web Features Data Search & Browse Tool
+
+Which feature would you like to use?
+
+► 1. Free Text Search (Pagination + Free Word)
+  2. Baseline Target (By Year)  
+  3. Exit
+
+↑↓: Navigate | Enter: Select | 1-3: Direct | ESC/q: Exit
+```
+
+## Development
+
+### Local Setup
+```bash
+git clone <repository>
+cd baseline-search
 npm install
 ```
 
-### ビルド
-```sh
-npm run build
+### Available Scripts
+```bash
+# Development (fast build)
+npm run dev          # English
+npm run dev:ja       # Japanese
+
+# Production (minified)
+npm run start        # English  
+npm run start:ja     # Japanese
+npm run start:en     # English (explicit)
 ```
 
-### 実行
-```sh
-npm start
-# または
-npm run dev
-```
+## Data Source
 
-## 技術構成
+This tool uses the official [web-features](https://github.com/web-platform-dx/web-features) dataset, providing accurate and up-to-date information about web platform feature support across browsers.
 
-- **TypeScript** + JSX（ink部分）
-- **依存関係**:
-  - `web-features`: 機能データソース
-  - `ink` + `react`: モダンなCLI UI
-  - `compute-baseline`: ベースライン計算
-- **型安全性**: web-features型定義を完全活用
+## Requirements
 
-## ディレクトリ構成
+- Node.js 16.0.0 or higher
+- Terminal with ANSI color support
 
-```
-web-features-docs-cli/
-├── main.ts                           # メインエントリポイント
-├── package.json                      # パッケージ設定
-├── README.md                         # このファイル
-└── features/                         # 機能実装
-    ├── ink-search-pagination-wrapper.ts     # 検索+ページネーション連携
-    ├── ink-search-pagination.tsx            # リアルタイム検索UI
-    ├── ink-baseline-wrapper.ts              # Baseline Target連携
-    ├── ink-baseline-target.tsx              # 年別一覧UI
-    ├── ink-feature-detail.tsx               # 機能詳細表示UI
-    ├── search-features.ts                   # フォールバック検索機能
-    └── show-feature-detail.ts               # フォールバック詳細表示
-```
+## License
 
-## 使い方
-
-1. アプリを起動すると表示モード選択画面が表示されます
-2. 数字キー（1-3）で機能を選択:
-   - **1**: フリーワード検索（ページネーション+フリーワード）
-   - **2**: Baseline Target（年別一覧）
-   - **3**: 終了
-3. 各機能内でのナビゲーションは画面の指示に従ってください
-
-### フリーワード検索の使い方
-- キーワードを入力すると即座に候補が表示されます
-- 機能ID（key）と機能名での部分一致検索をサポート
-- ページネーション機能で大量の結果も効率的にブラウズ可能
-
-### Baseline Target の使い方
-- 利用可能な年一覧から年を選択
-- 選択した年のBaseline Target機能一覧を表示
-- 各機能を選択して詳細情報を確認可能
-
-## 元プロジェクトとの関係
-
-このCLIは元の `web-features/test-features` プロジェクトから以下の機能を切り出したものです：
-- フリーワード検索（ページネーション+フリーワード）機能
-- Baseline Target（年別一覧）機能
-- 関連する詳細表示機能
-
-完全に独立したアプリケーションとして動作し、元プロジェクトへの依存はありません。
+MIT

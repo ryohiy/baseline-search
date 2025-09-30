@@ -1,4 +1,5 @@
 import * as readline from "readline";
+import { t } from './i18n.js';
 
 // ink-baseline-target.tsx からの結果型
 interface YearSelectionResult {

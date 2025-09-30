@@ -124,7 +124,7 @@ const YearSelectionApp: React.FC<{ onExit: (result: YearSelectionResult) => void
         <Box flexDirection="column">
           <Box marginBottom={1}>
             <Text color="cyan">
-              利用可能な年 (↑↓で選択、Enterで決定): {selectedIndex + 1}/{availableYears.length}
+              {t('baselineAvailableYears', selectedIndex + 1, availableYears.length)}
             </Text>
           </Box>
           
@@ -136,7 +136,7 @@ const YearSelectionApp: React.FC<{ onExit: (result: YearSelectionResult) => void
                 <Text color={actualIndex === selectedIndex ? 'black' : 'white'} 
                       backgroundColor={actualIndex === selectedIndex ? 'cyan' : undefined}>
                   {actualIndex === selectedIndex ? '► ' : '  '}
-                  {year} ({featureCount}件)
+                  {year} ({t('baselineYearCount', featureCount)})
                 </Text>
               </Box>
             );
@@ -145,7 +145,7 @@ const YearSelectionApp: React.FC<{ onExit: (result: YearSelectionResult) => void
           {availableYears.length > VISIBLE_ITEMS && (
             <Box marginTop={1}>
               <Text color="gray">
-                ↑↓キーでスクロール (表示中: {visibleStart + 1}-{Math.min(visibleStart + VISIBLE_ITEMS, availableYears.length)})
+                {t('baselineScrollInstructions', visibleStart + 1, Math.min(visibleStart + VISIBLE_ITEMS, availableYears.length))}
               </Text>
             </Box>
           )}
@@ -240,19 +240,19 @@ const FeatureSelectionApp: React.FC<{
     <Box flexDirection="column">
       <Box marginBottom={1}>
         <Text bold color="cyan">
-          === {year}年のBaseline Target機能一覧 ===
+          {t('baselineFeatureList', year)}
         </Text>
       </Box>
       
       <Box marginBottom={1}>
         <Text>
-          機能を選択してください (ESC: 年選択に戻る)
+          {t('baselineFeatureNavigationInstructions')}
         </Text>
       </Box>
 
       <Box marginBottom={1}>
         <Text color="green">
-          {featuresForYear.length}件の機能が見つかりました
+          {t('searchResults', featuresForYear.length)}
         </Text>
       </Box>
 
@@ -260,7 +260,7 @@ const FeatureSelectionApp: React.FC<{
         <Box flexDirection="column">
           <Box marginBottom={1}>
             <Text color="cyan">
-              機能一覧 (↑↓で選択、Enterで詳細表示): {selectedIndex + 1}/{featuresForYear.length}
+              {t('baselineFeatureCount', selectedIndex + 1, featuresForYear.length)}
             </Text>
           </Box>
           

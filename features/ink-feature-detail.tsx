@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { render, Text, Box, useInput, useApp } from 'ink';
 import { getStatus } from 'compute-baseline';
+import { t } from './i18n.js';
 
 interface FeatureDetailProps {
   featureKey: string;
@@ -312,14 +313,14 @@ const InkFeatureDetailApp: React.FC<FeatureDetailProps> = ({ featureKey, feature
     <Box flexDirection="column">
       <Box marginBottom={1}>
         <Text bold color="cyan">
-          === {featureKey.toUpperCase()} 詳細情報 ===
+          {t('detailTitle', featureKey.toUpperCase())}
         </Text>
       </Box>
       
       {renderFeatureContent()}
       
       <Box marginTop={1} borderStyle="single" borderColor="gray" paddingX={1}>
-        <Text color="green">EnterまたはESCで戻る</Text>
+        <Text color="green">{t('detailReturnInstruction')}</Text>
       </Box>
     </Box>
   );

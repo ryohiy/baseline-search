@@ -31,10 +31,17 @@ interface TextDefinitions {
   baselineFeatureList: string;
   baselineYearNavigationInstructions: string;
   baselineFeatureNavigationInstructions: string;
+  baselineAvailableYears: string;
+  baselineYearCount: string;
+  baselineScrollInstructions: string;
+  baselineFeatureCount: string;
+  baselineStartingUI: string;
+  baselineYearListUI: string;
 
   // 詳細画面
   detailTitle: string;
   detailReturnPrompt: string;
+  detailReturnInstruction: string;
 
   // 共通
   exit: string;
@@ -62,6 +69,9 @@ interface TextDefinitions {
   decision: string;
   navigation: string;
   directJump: string;
+  count: string;
+  scrollInstructions: string;
+  normalSearchFallback: string;
 }
 
 const texts: Record<Language, TextDefinitions> = {
@@ -96,10 +106,17 @@ const texts: Record<Language, TextDefinitions> = {
     baselineFeatureList: "=== {0}年 Baseline Target 機能一覧 ===",
     baselineYearNavigationInstructions: "↑↓: 選択 | Enter: 決定 | ESC: 戻る",
     baselineFeatureNavigationInstructions: "↑↓: 選択 | Enter: 詳細表示 | ESC: 年選択に戻る",
+    baselineAvailableYears: "利用可能な年 (↑↓で選択、Enterで決定): {0}/{1}",
+    baselineYearCount: "{0}件",
+    baselineScrollInstructions: "↑↓キーでスクロール (表示中: {0}-{1})",
+    baselineFeatureCount: "機能一覧 (↑↓で選択、Enterで詳細表示): {0}/{1}",
+    baselineStartingUI: "Baseline Target年選択UIを起動中...",
+    baselineYearListUI: "{0}年のBaseline Target機能一覧を起動中...",
 
     // 詳細画面
     detailTitle: "=== {0} 詳細情報 ===",
     detailReturnPrompt: "Enterでメニューに戻る: ",
+    detailReturnInstruction: "EnterまたはESCで戻る",
 
     // 共通
     exit: "終了します。",
@@ -126,7 +143,10 @@ const texts: Record<Language, TextDefinitions> = {
     select: "選択",
     decision: "決定",
     navigation: "移動",
-    directJump: "直接選択"
+    directJump: "直接選択",
+    count: "件",
+    scrollInstructions: "↑↓キーでスクロール",
+    normalSearchFallback: "通常の検索機能をご利用ください。"
   },
 
   en: {
@@ -160,10 +180,17 @@ const texts: Record<Language, TextDefinitions> = {
     baselineFeatureList: "=== {0} Baseline Target Features ===",
     baselineYearNavigationInstructions: "↑↓: Navigate | Enter: Select | ESC: Back",
     baselineFeatureNavigationInstructions: "↑↓: Navigate | Enter: Details | ESC: Back to year selection",
+    baselineAvailableYears: "Available years (↑↓ to select, Enter to confirm): {0}/{1}",
+    baselineYearCount: "{0} features",
+    baselineScrollInstructions: "↑↓ keys to scroll (showing: {0}-{1})",
+    baselineFeatureCount: "Feature list (↑↓ to select, Enter for details): {0}/{1}",
+    baselineStartingUI: "Starting Baseline Target year selection UI...",
+    baselineYearListUI: "Starting {0} Baseline Target feature list...",
 
     // 詳細画面
-    detailTitle: "=== {0} Details ===",
+    detailTitle: "=== {0} Feature Details ===",
     detailReturnPrompt: "Press Enter to return to menu: ",
+    detailReturnInstruction: "Press Enter or ESC to return",
 
     // 共通
     exit: "Exiting.",
@@ -190,7 +217,10 @@ const texts: Record<Language, TextDefinitions> = {
     select: "select",
     decision: "confirm",
     navigation: "navigate",
-    directJump: "direct"
+    directJump: "direct",
+    count: "features",
+    scrollInstructions: "↑↓ keys to scroll",
+    normalSearchFallback: "Please use the normal search function."
   }
 };
 

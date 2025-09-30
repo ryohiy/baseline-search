@@ -1,8 +1,9 @@
 import * as readline from "readline";
+import { t } from './i18n.js';
 
 export function showFeatureDetail(featureKey: string, featureData: any, rl: readline.Interface, callback: () => void) {
   console.clear();
-  console.log(`=== ${featureKey.toUpperCase()} 詳細情報 ===\n`);
+  console.log(t('detailTitle', featureKey.toUpperCase()) + '\n');
   
   // Kind (always present)
   console.log(`kind: ${featureData.kind}`);
@@ -134,7 +135,7 @@ export function showFeatureDetail(featureKey: string, featureData: any, rl: read
   }
   
   console.log("\n" + "=".repeat(50));
-  console.log("\nEnterでメニューに戻る: ");
+  console.log('\n' + t('detailReturnPrompt'));
   
   rl.question("", () => {
     console.clear();
