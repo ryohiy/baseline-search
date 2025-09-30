@@ -1,24 +1,24 @@
 # Baseline Search
 
-ターミナルから[Baseline](https://web.dev/baseline)の情報を一覧・検索できるCLIツール。
+A CLI tool to search and browse [Baseline](https://web.dev/baseline) information from the terminal.
 
-## 使用方法
+## Usage
 
 ```bash
-# 英語（デフォルト）
+# English (default)
 npx baseline-search
 
-# 日本語
+# Japanese
 npx baseline-search --ja
 ```
 
-## 機能
-- フリーワード検索機能
-- Baseline Target一覧
+## Features
+- Free text search functionality
+- Baseline Target list
 
-## データソース
+## Data Source
 
-このツールは[web-features](https://github.com/web-platform-dx/web-features)データセットを使用しています。
+This tool uses the [web-features](https://github.com/web-platform-dx/web-features) dataset.
 
-## ライセンス
+## License
 MIT
