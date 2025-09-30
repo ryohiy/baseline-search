@@ -32,6 +32,11 @@
   ],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryohiy/baseline-seach.git"
+  },
+  "homepage": "https://github.com/ryohiy/baseline-seach#readme",
   "dependencies": {
     "compute-baseline": "latest",
     "ink": "^4.4.1",
