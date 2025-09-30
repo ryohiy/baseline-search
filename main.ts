@@ -18,7 +18,6 @@ async function executeChoice(choice: number) {
   
   switch (choice) {
     case 1:
-      console.log(`=== ${t('mainMenuFreeSearch')} ===\n`);
       const { startInkSearchPagination } = await import('./features/ink-search-pagination.js');
       
       while (true) {

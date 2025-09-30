@@ -55,7 +55,6 @@ interface TextDefinitions {
   errorApp: string;
   errorInvalidChoice: string;
   errorNoSearchKeyword: string;
-  errorInkNotAvailable: string;
   errorSwitchingToNormal: string;
 
   // その他
@@ -87,7 +86,7 @@ const texts: Record<Language, TextDefinitions> = {
     mainMenuDirectSelect: "数字キー (1-{0}) でページジャンプ",
 
     // 検索画面
-    searchTitle: "=== フリーワード検索+ページネーション (ink利用) ===",
+    searchTitle: "=== フリーワード検索+ページネーション ===",
     searchKeyword: "検索キーワード: ",
     searchResults: "{0}件の機能が見つかりました",
     searchNoResults: "機能が見つかりませんでした",
@@ -130,7 +129,6 @@ const texts: Record<Language, TextDefinitions> = {
     errorApp: "アプリケーションでエラーが発生しました:",
     errorInvalidChoice: "無効な選択です。1-3を選んでください。",
     errorNoSearchKeyword: "検索キーワードが入力されていません。",
-    errorInkNotAvailable: "この環境ではink検索+ページネーション機能をご利用いただけません。",
     errorSwitchingToNormal: "通常の検索機能に切り替えます...",
 
     // その他
@@ -161,7 +159,7 @@ const texts: Record<Language, TextDefinitions> = {
     mainMenuDirectSelect: "Number keys (1-{0}) for page jump",
 
     // 検索画面
-    searchTitle: "=== Free Text Search + Pagination (using ink) ===",
+    searchTitle: "=== Free Text Search + Pagination ===",
     searchKeyword: "Search keyword: ",
     searchResults: "{0} features found",
     searchNoResults: "No features found",
@@ -204,7 +202,6 @@ const texts: Record<Language, TextDefinitions> = {
     errorApp: "Application error occurred:",
     errorInvalidChoice: "Invalid choice. Please select 1-3.",
     errorNoSearchKeyword: "No search keyword entered.",
-    errorInkNotAvailable: "Ink search+pagination feature is not available in this environment.",
     errorSwitchingToNormal: "Switching to normal search function...",
 
     // その他
