@@ -1,4 +1,5 @@
 # Baseline Search
+English | [日本語](https://github.com/ryohiy/baseline-seach/blob/main/README.ja.md)
 
 A CLI tool to search and browse [Baseline](https://web.dev/baseline) information from the terminal.
 

@@ -1,4 +1,5 @@
 # Baseline Search
+[English](https://github.com/ryohiy/baseline-seach/blob/main/README.md) | 日本語
 
 ターミナルから[Baseline](https://web.dev/baseline)の情報を一覧・検索できるCLIツール。
 
