@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { render, Text, Box, useInput, useApp } from 'ink';
+import { t } from './i18n.js';
 
 interface MenuResult {
   choice: number | null;
@@ -11,9 +12,9 @@ const InkMainMenuApp: React.FC<{ onExit: (result: MenuResult) => void }> = ({ on
   const { exit } = useApp();
 
   const menuItems = [
-    { key: 1, label: "フリーワード検索（ページネーション+フリーワード）" },
-    { key: 2, label: "Baseline Target（年別一覧）" },
-    { key: 3, label: "Exit (終了)" }
+    { key: 1, label: t('mainMenuFreeSearch') },
+    { key: 2, label: t('mainMenuBaselineTarget') },
+    { key: 3, label: t('mainMenuExit') }
   ];
 
   useInput((input, key) => {
@@ -52,14 +53,14 @@ const InkMainMenuApp: React.FC<{ onExit: (result: MenuResult) => void }> = ({ on
   return (
     <Box flexDirection="column">
       <Text bold color="cyan">
-        === WEB FEATURES DOCS CLI ===
+        {t('mainTitle')}
       </Text>
       <Text>
-        Web機能データの詳細検索・閲覧ツール
+        {t('mainSubtitle')}
       </Text>
       <Text> </Text>
       <Text>
-        どの機能を利用しますか?
+        {t('mainMenuQuestion')}
       </Text>
       <Text> </Text>
 
@@ -74,7 +75,7 @@ const InkMainMenuApp: React.FC<{ onExit: (result: MenuResult) => void }> = ({ on
 
       <Text> </Text>
       <Text color="gray">
-        ↑↓: 選択移動 | Enter: 決定 | 1-3: 直接選択 | ESC/q: 終了
+        {t('mainMenuNavigation')}
       </Text>
     </Box>
   );

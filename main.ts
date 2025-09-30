@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 import { showInkMainMenu } from "./features/ink-main-menu.js";
+import { parseLanguageFromArgs, setLanguage } from "./features/language-config.js";
+import { t } from "./features/i18n.js";
 
 // 基本的なプロセス終了ハンドリング
 process.on('SIGINT', () => {
@@ -16,7 +18,7 @@ async function executeChoice(choice: number) {
   
   switch (choice) {
     case 1:
-      console.log("=== フリーワード検索（ページネーション+フリーワード） ===\n");
+      console.log(`=== ${t('mainMenuFreeSearch')} ===\n`);
       const { startInkSearchPagination } = await import('./features/ink-search-pagination.js');
       
       while (true) {
@@ -42,7 +44,7 @@ async function executeChoice(choice: number) {
       break;
       
     case 2:
-      console.log("=== Baseline Target（年別一覧） ===\n");
+      console.log(`=== ${t('mainMenuBaselineTarget')} ===\n`);
       const { startInkBaselineTarget } = await import('./features/ink-baseline-target.js');
       
       while (true) {
@@ -68,11 +70,11 @@ async function executeChoice(choice: number) {
       break;
       
     case 3:
-      console.log("終了します。");
+      console.log(t('exit'));
       process.exit(0);
       
     default:
-      console.log("無効な選択です。1-3を選んでください。");
+      console.log(t('errorInvalidChoice'));
       break;
   }
 }
@@ -83,7 +85,7 @@ async function startCLI() {
     const result = await showInkMainMenu();
     
     if (result.cancelled) {
-      console.log("終了します。");
+      console.log(t('exit'));
       process.exit(0);
     }
     
@@ -93,7 +95,11 @@ async function startCLI() {
   }
 }
 
+// 言語設定を初期化
+const language = parseLanguageFromArgs();
+setLanguage(language);
+
 startCLI().catch(error => {
-  console.error('アプリケーションでエラーが発生しました:', error);
+  console.error(t('errorApp'), error);
   process.exit(1);
 });

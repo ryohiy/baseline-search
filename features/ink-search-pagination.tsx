@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { render, Text, Box, useInput, useApp } from 'ink';
 import { features } from 'web-features';
+import { t } from './i18n.js';
 
 type FeatureWithKey = any & { key: string };
 
@@ -170,34 +171,34 @@ const InkSearchPaginationApp: React.FC<{ onExit: (result: SearchPaginationResult
     <Box flexDirection="column">
       <Box marginBottom={1}>
         <Text bold color="cyan">
-          === フリーワード検索+ページネーション (ink利用) ===
+          {t('searchTitle')}
         </Text>
       </Box>
       
       <Box marginBottom={1}>
-        <Text color="yellow">検索キーワード: </Text>
+        <Text color="yellow">{t('searchKeyword')}</Text>
         <Text color="white">{searchTerm || ""}</Text>
         {isSearchMode && cursorVisible && <Text color="gray">|</Text>}
         {isSearchMode && !cursorVisible && <Text color="gray"> </Text>}
         {searchTerm && !isSearchMode && (
-          <Text color="gray"> (Ctrl+C: クリア)</Text>
+          <Text color="gray">{t('searchClearHint')}</Text>
         )}
       </Box>
 
       <Box marginBottom={1}>
         <Text color="green">
           {displayFeatures.length > 0 
-            ? `${displayFeatures.length}件の機能が見つかりました` 
-            : '機能が見つかりませんでした'
+            ? t('searchResults', displayFeatures.length)
+            : t('searchNoResults')
           }
-          {searchTerm && ` (検索語: "${searchTerm}")`}
+          {searchTerm && ` (${t('search')}: "${searchTerm}")`}
         </Text>
       </Box>
 
       {totalPages > 0 && (
         <Box marginBottom={1}>
           <Text color="yellow">
-            ページ: {currentPage + 1}/{totalPages} | 表示中: {startIndex + 1}-{endIndex}
+            {t('searchPageInfo', currentPage + 1, totalPages, startIndex + 1, endIndex)}
           </Text>
         </Box>
       )}
@@ -234,8 +235,8 @@ const InkSearchPaginationApp: React.FC<{ onExit: (result: SearchPaginationResult
         <Box marginTop={1}>
           <Text color="gray">
             {isSearchMode 
-              ? "検索中: ↑↓で選択 | ←→でページ | Enter: 決定 | ESC: 検索終了"
-              : "↑↓: 選択 | ←→: ページ | /またはs: 検索 | Enter: 決定 | ESC/q: 終了"
+              ? t('searchInstructionsSearch')
+              : t('searchInstructions')
             }
           </Text>
         </Box>
@@ -244,7 +245,7 @@ const InkSearchPaginationApp: React.FC<{ onExit: (result: SearchPaginationResult
       {!isSearchMode && totalPages <= 9 && totalPages > 1 && (
         <Box marginTop={1}>
           <Text color="gray">
-            数字キー (1-{Math.min(9, totalPages)}) でページジャンプ
+            {t('searchInstructionsNoPage', Math.min(9, totalPages))}
           </Text>
         </Box>
       )}
@@ -252,7 +253,7 @@ const InkSearchPaginationApp: React.FC<{ onExit: (result: SearchPaginationResult
       {currentPageFeatures.length === 0 && searchTerm && (
         <Box marginTop={1}>
           <Text color="gray">
-            別のキーワードを試すか、Ctrl+Cで検索をクリアしてください
+            {t('searchTryOtherKeywords')}
           </Text>
         </Box>
       )}

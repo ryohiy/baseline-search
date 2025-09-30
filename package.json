@@ -12,7 +12,11 @@
     "build:minify": "npm run build && npm run minify",
     "minify": "find dist -name '*.js' -exec npx terser {} --compress --mangle --output {} \\;",
     "start": "npm run build:minify && node dist/main.js",
+    "start:en": "npm run build:minify && node dist/main.js --en",
+    "start:ja": "npm run build:minify && node dist/main.js --ja",
     "dev": "npm run build && node dist/main.js",
+    "dev:en": "npm run build && node dist/main.js --en",
+    "dev:ja": "npm run build && node dist/main.js --ja",
     "prepublishOnly": "npm run build:minify"
   },
   "files": [

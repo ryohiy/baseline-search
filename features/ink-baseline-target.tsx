@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { render, Text, Box, useInput } from 'ink';
 import { features } from 'web-features';
+import { t } from './i18n.js';
 
 type FeatureWithKey = any & { key: string };
 
@@ -109,13 +110,13 @@ const YearSelectionApp: React.FC<{ onExit: (result: YearSelectionResult) => void
     <Box flexDirection="column">
       <Box marginBottom={1}>
         <Text bold color="cyan">
-          === Baseline Target 年選択 ===
+          {t('baselineYearSelection')}
         </Text>
       </Box>
       
       <Box marginBottom={1}>
         <Text>
-          年を選択してください (ESC: キャンセル)
+          {t('baselineYearNavigationInstructions')}
         </Text>
       </Box>
 
