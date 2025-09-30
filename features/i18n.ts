@@ -9,7 +9,6 @@ interface TextDefinitions {
   mainMenuBaselineTarget: string;
   mainMenuExit: string;
   mainMenuNavigation: string;
-  mainMenuDirectSelect: string;
 
   // 検索画面
   searchTitle: string;
@@ -24,9 +23,6 @@ interface TextDefinitions {
   searchClearHint: string;
 
   // Baseline Target画面
-  baselineTitle: string;
-  baselineNoFeatures: string;
-  baselineReturnToMenu: string;
   baselineYearSelection: string;
   baselineFeatureList: string;
   baselineYearNavigationInstructions: string;
@@ -35,42 +31,20 @@ interface TextDefinitions {
   baselineYearCount: string;
   baselineScrollInstructions: string;
   baselineFeatureCount: string;
-  baselineStartingUI: string;
-  baselineYearListUI: string;
 
   // 詳細画面
   detailTitle: string;
-  detailReturnPrompt: string;
   detailReturnInstruction: string;
 
   // 共通
   exit: string;
-  cancel: string;
-  loading: string;
-  error: string;
-  returnToMenu: string;
-  pressEnterToContinue: string;
 
   // エラーメッセージ
   errorApp: string;
   errorInvalidChoice: string;
-  errorNoSearchKeyword: string;
-  errorSwitchingToNormal: string;
 
   // その他
-  year: string;
-  resultsCount: string;
-  page: string;
-  displaying: string;
-  jump: string;
   search: string;
-  select: string;
-  decision: string;
-  navigation: string;
-  directJump: string;
-  count: string;
-  scrollInstructions: string;
-  normalSearchFallback: string;
 }
 
 const texts: Record<Language, TextDefinitions> = {
@@ -83,7 +57,6 @@ const texts: Record<Language, TextDefinitions> = {
     mainMenuBaselineTarget: "Baseline Target（年別一覧）",
     mainMenuExit: "Exit (終了)",
     mainMenuNavigation: "↑↓: 選択移動 | Enter: 決定 | 1-3: 直接選択 | ESC/q: 終了",
-    mainMenuDirectSelect: "数字キー (1-{0}) でページジャンプ",
 
     // 検索画面
     searchTitle: "=== フリーワード検索+ページネーション ===",
@@ -98,9 +71,6 @@ const texts: Record<Language, TextDefinitions> = {
     searchClearHint: " (Ctrl+C: クリア)",
 
     // Baseline Target画面
-    baselineTitle: "=== Baseline Target (年別一覧) ===",
-    baselineNoFeatures: "この年にはBaseline Target機能がありません",
-    baselineReturnToMenu: "メニューに戻ります。",
     baselineYearSelection: "=== Baseline Target 年選択 ===",
     baselineFeatureList: "=== {0}年 Baseline Target 機能一覧 ===",
     baselineYearNavigationInstructions: "↑↓: 選択 | Enter: 決定 | ESC: 戻る",
@@ -109,42 +79,19 @@ const texts: Record<Language, TextDefinitions> = {
     baselineYearCount: "{0}件",
     baselineScrollInstructions: "↑↓キーでスクロール (表示中: {0}-{1})",
     baselineFeatureCount: "機能一覧 (↑↓で選択、Enterで詳細表示): {0}/{1}",
-    baselineStartingUI: "Baseline Target年選択UIを起動中...",
-    baselineYearListUI: "{0}年のBaseline Target機能一覧を起動中...",
 
     // 詳細画面
     detailTitle: "=== {0} 詳細情報 ===",
-    detailReturnPrompt: "Enterでメニューに戻る: ",
     detailReturnInstruction: "EnterまたはESCで戻る",
 
     // 共通
     exit: "終了します。",
-    cancel: "キャンセル",
-    loading: "読み込み中...",
-    error: "エラー",
-    returnToMenu: "メニューに戻る",
-    pressEnterToContinue: "Enterキーで続行...",
-
     // エラーメッセージ
     errorApp: "アプリケーションでエラーが発生しました:",
     errorInvalidChoice: "無効な選択です。1-3を選んでください。",
-    errorNoSearchKeyword: "検索キーワードが入力されていません。",
-    errorSwitchingToNormal: "通常の検索機能に切り替えます...",
 
     // その他
-    year: "年",
-    resultsCount: "件",
-    page: "ページ",
-    displaying: "表示中",
-    jump: "ジャンプ",
-    search: "検索",
-    select: "選択",
-    decision: "決定",
-    navigation: "移動",
-    directJump: "直接選択",
-    count: "件",
-    scrollInstructions: "↑↓キーでスクロール",
-    normalSearchFallback: "通常の検索機能をご利用ください。"
+    search: "検索"
   },
 
   en: {
@@ -156,7 +103,6 @@ const texts: Record<Language, TextDefinitions> = {
     mainMenuBaselineTarget: "Baseline Target (By Year)",
     mainMenuExit: "Exit",
     mainMenuNavigation: "↑↓: Navigate | Enter: Select | 1-3: Direct | ESC/q: Exit",
-    mainMenuDirectSelect: "Number keys (1-{0}) for page jump",
 
     // 検索画面
     searchTitle: "=== Free Text Search + Pagination ===",
@@ -171,9 +117,6 @@ const texts: Record<Language, TextDefinitions> = {
     searchClearHint: " (Ctrl+C: Clear)",
 
     // Baseline Target画面
-    baselineTitle: "=== Baseline Target (By Year) ===",
-    baselineNoFeatures: "No Baseline Target features in this year",
-    baselineReturnToMenu: "Returning to menu.",
     baselineYearSelection: "=== Baseline Target Year Selection ===",
     baselineFeatureList: "=== {0} Baseline Target Features ===",
     baselineYearNavigationInstructions: "↑↓: Navigate | Enter: Select | ESC: Back",
@@ -182,42 +125,19 @@ const texts: Record<Language, TextDefinitions> = {
     baselineYearCount: "{0} features",
     baselineScrollInstructions: "↑↓ keys to scroll (showing: {0}-{1})",
     baselineFeatureCount: "Feature list (↑↓ to select, Enter for details): {0}/{1}",
-    baselineStartingUI: "Starting Baseline Target year selection UI...",
-    baselineYearListUI: "Starting {0} Baseline Target feature list...",
 
     // 詳細画面
     detailTitle: "=== {0} Feature Details ===",
-    detailReturnPrompt: "Press Enter to return to menu: ",
     detailReturnInstruction: "Press Enter or ESC to return",
 
     // 共通
     exit: "Exiting.",
-    cancel: "Cancel",
-    loading: "Loading...",
-    error: "Error",
-    returnToMenu: "Return to menu",
-    pressEnterToContinue: "Press Enter to continue...",
-
     // エラーメッセージ
     errorApp: "Application error occurred:",
     errorInvalidChoice: "Invalid choice. Please select 1-3.",
-    errorNoSearchKeyword: "No search keyword entered.",
-    errorSwitchingToNormal: "Switching to normal search function...",
 
     // その他
-    year: "year",
-    resultsCount: "results",
-    page: "page",
-    displaying: "showing",
-    jump: "jump",
-    search: "search",
-    select: "select",
-    decision: "confirm",
-    navigation: "navigate",
-    directJump: "direct",
-    count: "features",
-    scrollInstructions: "↑↓ keys to scroll",
-    normalSearchFallback: "Please use the normal search function."
+    search: "search"
   }
 };
 
