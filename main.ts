@@ -69,9 +69,34 @@ async function executeChoice(choice: number) {
       break;
       
     case 3:
+      const { startInkRecentBaseline } = await import('./features/ink-recent-baseline.js');
+
+      while (true) {
+        const recentResult = await startInkRecentBaseline();
+
+        if (recentResult.cancelled) {
+          // キャンセルされた場合はメニューに戻る
+          break;
+        }
+
+        if (recentResult.selectedFeature) {
+          // 機能が選択された場合は詳細表示
+          const { startInkFeatureDetail } = await import('./features/ink-feature-detail.js');
+          await startInkFeatureDetail(recentResult.selectedFeature.key, recentResult.selectedFeature);
+          console.clear();
+          // 詳細表示後は最近のBaseline画面に戻る
+          continue;
+        } else {
+          // 選択されなかった場合はメニューに戻る
+          break;
+        }
+      }
+      break;
+
+    case 4:
       console.log(t('exit'));
       process.exit(0);
-      
+
     default:
       console.log(t('errorInvalidChoice'));
       break;

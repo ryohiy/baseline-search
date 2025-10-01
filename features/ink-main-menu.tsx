@@ -14,7 +14,8 @@ const InkMainMenuApp: React.FC<{ onExit: (result: MenuResult) => void }> = ({ on
   const menuItems = [
     { key: 1, label: t('mainMenuFreeSearch') },
     { key: 2, label: t('mainMenuBaselineTarget') },
-    { key: 3, label: t('mainMenuExit') }
+    { key: 3, label: t('mainMenuRecentBaseline') },
+    { key: 4, label: t('mainMenuExit') }
   ];
 
   useInput((input, key) => {
@@ -43,7 +44,7 @@ const InkMainMenuApp: React.FC<{ onExit: (result: MenuResult) => void }> = ({ on
 
     // 数字キーでの直接選択
     const num = parseInt(input);
-    if (num >= 1 && num <= 3) {
+    if (num >= 1 && num <= 4) {
       exit();
       onExit({ choice: num, cancelled: false });
       return;

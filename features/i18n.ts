@@ -7,6 +7,7 @@ interface TextDefinitions {
   mainMenuQuestion: string;
   mainMenuFreeSearch: string;
   mainMenuBaselineTarget: string;
+  mainMenuRecentBaseline: string;
   mainMenuExit: string;
   mainMenuNavigation: string;
 
@@ -32,6 +33,13 @@ interface TextDefinitions {
   baselineScrollInstructions: string;
   baselineFeatureCount: string;
 
+  // Recent Baseline画面
+  recentBaselineTitle: string;
+  recentBaselineNavigationInstructions: string;
+  recentWidelyAvailable: string;
+  recentNewlyAvailable: string;
+  recentBaselineNoResults: string;
+
   // 詳細画面
   detailTitle: string;
   detailReturnInstruction: string;
@@ -55,8 +63,9 @@ const texts: Record<Language, TextDefinitions> = {
     mainMenuQuestion: "どの機能を利用しますか?",
     mainMenuFreeSearch: "フリーワード検索（ページネーション+フリーワード）",
     mainMenuBaselineTarget: "Baseline Target（年別一覧）",
+    mainMenuRecentBaseline: "最近のBaseline更新（過去28日間）",
     mainMenuExit: "Exit (終了)",
-    mainMenuNavigation: "↑↓: 選択移動 | Enter: 決定 | 1-3: 直接選択 | ESC/q: 終了",
+    mainMenuNavigation: "↑↓: 選択移動 | Enter: 決定 | 1-4: 直接選択 | ESC/q: 終了",
 
     // 検索画面
     searchTitle: "=== フリーワード検索+ページネーション ===",
@@ -80,6 +89,13 @@ const texts: Record<Language, TextDefinitions> = {
     baselineScrollInstructions: "↑↓キーでスクロール (表示中: {0}-{1})",
     baselineFeatureCount: "機能一覧 (↑↓で選択、Enterで詳細表示): {0}/{1}",
 
+    // Recent Baseline画面
+    recentBaselineTitle: "=== 最近のBaseline更新 (過去28日間) ===",
+    recentBaselineNavigationInstructions: "↑↓: 選択 | Enter: 詳細表示 | ESC: 戻る",
+    recentWidelyAvailable: "最近Widely Availableになった機能",
+    recentNewlyAvailable: "最近Newly Availableになった機能",
+    recentBaselineNoResults: "過去28日間に更新された機能はありません",
+
     // 詳細画面
     detailTitle: "=== {0} 詳細情報 ===",
     detailReturnInstruction: "EnterまたはESCで戻る",
@@ -101,8 +117,9 @@ const texts: Record<Language, TextDefinitions> = {
     mainMenuQuestion: "Which feature would you like to use?",
     mainMenuFreeSearch: "Free Text Search (Pagination + Free Word)",
     mainMenuBaselineTarget: "Baseline Target (By Year)",
+    mainMenuRecentBaseline: "Recent Baseline Updates (Last 28 Days)",
     mainMenuExit: "Exit",
-    mainMenuNavigation: "↑↓: Navigate | Enter: Select | 1-3: Direct | ESC/q: Exit",
+    mainMenuNavigation: "↑↓: Navigate | Enter: Select | 1-4: Direct | ESC/q: Exit",
 
     // 検索画面
     searchTitle: "=== Free Text Search + Pagination ===",
@@ -125,6 +142,13 @@ const texts: Record<Language, TextDefinitions> = {
     baselineYearCount: "{0} features",
     baselineScrollInstructions: "↑↓ keys to scroll (showing: {0}-{1})",
     baselineFeatureCount: "Feature list (↑↓ to select, Enter for details): {0}/{1}",
+
+    // Recent Baseline画面
+    recentBaselineTitle: "=== Recent Baseline Updates (Last 28 Days) ===",
+    recentBaselineNavigationInstructions: "↑↓: Navigate | Enter: Details | ESC: Back",
+    recentWidelyAvailable: "Recently Widely Available Features",
+    recentNewlyAvailable: "Recently Newly Available Features",
+    recentBaselineNoResults: "No features updated in the last 28 days",
 
     // 詳細画面
     detailTitle: "=== {0} Feature Details ===",
