@@ -3,6 +3,9 @@ English | [日本語](https://github.com/ryohiy/baseline-seach/blob/main/README.
 
 A CLI tool to search and browse [Baseline](https://web.dev/baseline) information from the terminal.
 
+Since it uses [web-features](https://github.com/web-platform-dx/web-features) as a data source, you can not only check Baseline information but also view detailed feature information.
+
+
 ## Usage
 
 ```bash

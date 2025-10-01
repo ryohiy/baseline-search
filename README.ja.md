@@ -3,6 +3,9 @@
 
 ターミナルから[Baseline](https://web.dev/baseline)の情報を一覧・検索できるCLIツール。
 
+[web-features](https://github.com/web-platform-dx/web-features)のfeaturesをデータソースとしているため、Baseline情報の確認だけではなく、featuresの詳細を見ることも可能です。
+
+
 ## 使用方法
 
 ```bash
