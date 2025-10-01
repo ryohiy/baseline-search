@@ -16,6 +16,7 @@ npx baseline-search --ja
 ## Features
 - Free text search functionality
 - Baseline Target list
+- Recent Baseline updates (Last 28 days)
 
 ## Data Source
 

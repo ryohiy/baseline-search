@@ -16,6 +16,7 @@ npx baseline-search --ja
 ## 機能
 - フリーワード検索機能
 - Baseline Target一覧
+- 最近のBaseline更新確認（過去28日間）
 
 ## データソース
 

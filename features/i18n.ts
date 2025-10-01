@@ -58,8 +58,8 @@ interface TextDefinitions {
 const texts: Record<Language, TextDefinitions> = {
   ja: {
     // メインメニュー
-    mainTitle: "=== WEB FEATURES DOCS CLI ===",
-    mainSubtitle: "Web機能データの詳細検索・閲覧ツール",
+    mainTitle: "=== Baseline Search ===",
+    mainSubtitle: "Baseline情報の一覧・検索ツール",
     mainMenuQuestion: "どの機能を利用しますか?",
     mainMenuFreeSearch: "フリーワード検索（ページネーション+フリーワード）",
     mainMenuBaselineTarget: "Baseline Target（年別一覧）",
@@ -112,8 +112,8 @@ const texts: Record<Language, TextDefinitions> = {
 
   en: {
     // メインメニュー
-    mainTitle: "=== WEB FEATURES DOCS CLI ===",
-    mainSubtitle: "Web Features Data Search & Browse Tool",
+    mainTitle: "=== Baseline Search ===",
+    mainSubtitle: "Baseline Information Search & Browse Tool",
     mainMenuQuestion: "Which feature would you like to use?",
     mainMenuFreeSearch: "Free Text Search (Pagination + Free Word)",
     mainMenuBaselineTarget: "Baseline Target (By Year)",
