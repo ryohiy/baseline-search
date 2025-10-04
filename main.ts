@@ -43,32 +43,6 @@ async function executeChoice(choice: number) {
       break;
       
     case 2:
-      console.log(`=== ${t('mainMenuBaselineTarget')} ===\n`);
-      const { startInkBaselineTarget } = await import('./features/ink-baseline-target.js');
-      
-      while (true) {
-        const baselineResult = await startInkBaselineTarget();
-        
-        if (baselineResult.cancelled) {
-          // キャンセルされた場合はメニューに戻る
-          break;
-        }
-        
-        if (baselineResult.selectedFeature) {
-          // 機能が選択された場合は詳細表示
-          const { startInkFeatureDetail } = await import('./features/ink-feature-detail.js');
-          await startInkFeatureDetail(baselineResult.selectedFeature.key, baselineResult.selectedFeature);
-          console.clear();
-          // 詳細表示後はベースライン画面に戻る
-          continue;
-        } else {
-          // 選択されなかった場合はメニューに戻る
-          break;
-        }
-      }
-      break;
-      
-    case 3:
       const { startInkRecentBaseline } = await import('./features/ink-recent-baseline.js');
 
       while (true) {
@@ -85,6 +59,32 @@ async function executeChoice(choice: number) {
           await startInkFeatureDetail(recentResult.selectedFeature.key, recentResult.selectedFeature);
           console.clear();
           // 詳細表示後は最近のBaseline画面に戻る
+          continue;
+        } else {
+          // 選択されなかった場合はメニューに戻る
+          break;
+        }
+      }
+      break;
+
+    case 3:
+      console.log(`=== ${t('mainMenuBaselineTarget')} ===\n`);
+      const { startInkBaselineTarget } = await import('./features/ink-baseline-target.js');
+
+      while (true) {
+        const baselineResult = await startInkBaselineTarget();
+
+        if (baselineResult.cancelled) {
+          // キャンセルされた場合はメニューに戻る
+          break;
+        }
+
+        if (baselineResult.selectedFeature) {
+          // 機能が選択された場合は詳細表示
+          const { startInkFeatureDetail } = await import('./features/ink-feature-detail.js');
+          await startInkFeatureDetail(baselineResult.selectedFeature.key, baselineResult.selectedFeature);
+          console.clear();
+          // 詳細表示後はベースライン画面に戻る
           continue;
         } else {
           // 選択されなかった場合はメニューに戻る

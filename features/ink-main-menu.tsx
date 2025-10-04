@@ -13,8 +13,8 @@ const InkMainMenuApp: React.FC<{ onExit: (result: MenuResult) => void }> = ({ on
 
   const menuItems = [
     { key: 1, label: t('mainMenuFreeSearch') },
-    { key: 2, label: t('mainMenuBaselineTarget') },
-    { key: 3, label: t('mainMenuRecentBaseline') },
+    { key: 2, label: t('mainMenuRecentBaseline') },
+    { key: 3, label: t('mainMenuBaselineTarget') },
     { key: 4, label: t('mainMenuExit') }
   ];
 
