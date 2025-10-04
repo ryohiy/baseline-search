@@ -277,8 +277,7 @@ const FeatureSelectionApp: React.FC<{
                   {isBaslineHigh && <Text color="green">● </Text>}
                   {isBaslineLow && <Text color="#1D7AFC">● </Text>}
                   {isBaslineFalse && <Text color="#E56910">● </Text>}
-                  {feature.key}
-                  {feature.name ? ` - ${feature.name}` : ''}
+                  {feature.name}
                   <Text color="gray"> ({feature.status?.baseline_low_date})</Text>
                 </Text>
               </Box>

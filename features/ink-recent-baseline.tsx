@@ -132,8 +132,7 @@ const RecentBaselineApp: React.FC<{ onExit: (result: RecentBaselineResult) => vo
         >
           {actualIndex === selectedIndex ? '► ' : '  '}
           {isHighFeature ? <Text color="green">● </Text> : <Text color="#1D7AFC">● </Text>}
-          {feature.key}
-          {feature.name ? ` - ${feature.name}` : ''}
+          {feature.name}
           <Text color="gray"> ({date})</Text>
         </Text>
       </Box>
