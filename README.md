@@ -1,7 +1,7 @@
 # Baseline Search
 English | [日本語](https://github.com/ryohiy/baseline-seach/blob/main/README.ja.md)
 
-![Demo](assets/baseline-search-demo.gif)
+![Demo](https://github.com/ryohiy/baseline-seach/blob/main/assets/baseline-search-demo.gif)
 
 A CLI tool to search and browse [Baseline](https://web.dev/baseline) information from the terminal.
 
