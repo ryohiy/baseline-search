@@ -100,7 +100,7 @@ const RecentBaselineApp: React.FC<{
 		setVisibleStart(newVisibleStart);
 	}, [selectedIndex, totalCount]);
 
-	useInput((input, key) => {
+	useInput((_input, key) => {
 		if (key.escape) {
 			onExit({ selectedFeature: null, cancelled: true });
 			return;

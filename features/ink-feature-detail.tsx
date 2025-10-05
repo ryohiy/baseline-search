@@ -1,7 +1,6 @@
 import { getStatus } from "compute-baseline";
-import { Box, render, Text, useApp, useInput } from "ink";
+import { Box, render, Text, useInput } from "ink";
 import type React from "react";
-import { useState } from "react";
 import { t } from "./i18n.js";
 
 interface FeatureDetailProps {
@@ -15,10 +14,8 @@ const InkFeatureDetailApp: React.FC<FeatureDetailProps> = ({
 	featureData,
 	onExit,
 }) => {
-	const { exit } = useApp();
-
 	// キーボード入力処理（Enterで終了）
-	useInput((input, key) => {
+	useInput((_input, key) => {
 		if (key.return || key.escape) {
 			onExit();
 			return;
@@ -73,7 +70,7 @@ const InkFeatureDetailApp: React.FC<FeatureDetailProps> = ({
 					<Box key="spec" marginBottom={1} flexDirection="column">
 						<Text color="cyan">spec:</Text>
 						{featureData.spec.map((url: string, index: number) => (
-							<Box key={index} marginLeft={2}>
+							<Box key={url} marginLeft={2}>
 								<Text color="gray">[{index}]: </Text>
 								<Text>{url}</Text>
 							</Box>
@@ -88,7 +85,7 @@ const InkFeatureDetailApp: React.FC<FeatureDetailProps> = ({
 					<Box key="group" marginBottom={1} flexDirection="column">
 						<Text color="cyan">group:</Text>
 						{featureData.group.map((groupId: string, index: number) => (
-							<Box key={index} marginLeft={2}>
+							<Box key={groupId} marginLeft={2}>
 								<Text color="gray">[{index}]: </Text>
 								<Text>{groupId}</Text>
 							</Box>
@@ -190,7 +187,7 @@ const InkFeatureDetailApp: React.FC<FeatureDetailProps> = ({
 					<Box key="snapshot" marginBottom={1} flexDirection="column">
 						<Text color="cyan">snapshot:</Text>
 						{featureData.snapshot.map((snapshotId: string, index: number) => (
-							<Box key={index} marginLeft={2}>
+							<Box key={snapshotId} marginLeft={2}>
 								<Text color="gray">[{index}]: </Text>
 								<Text>{snapshotId}</Text>
 							</Box>
@@ -205,7 +202,7 @@ const InkFeatureDetailApp: React.FC<FeatureDetailProps> = ({
 					<Box key="caniuse" marginBottom={1} flexDirection="column">
 						<Text color="cyan">caniuse:</Text>
 						{featureData.caniuse.map((caniuseId: string, index: number) => (
-							<Box key={index} marginLeft={2}>
+							<Box key={caniuseId} marginLeft={2}>
 								<Text color="gray">[{index}]: </Text>
 								<Text>{caniuseId}</Text>
 							</Box>
@@ -228,12 +225,16 @@ const InkFeatureDetailApp: React.FC<FeatureDetailProps> = ({
 								let baselineInfo = null;
 								try {
 									baselineInfo = getStatus(featureKey, compatFeature);
-								} catch (error) {
+								} catch (_error) {
 									// If getStatus fails, continue without baseline info
 								}
 
 								return (
-									<Box key={index} marginLeft={2} flexDirection="column">
+									<Box
+										key={compatFeature}
+										marginLeft={2}
+										flexDirection="column"
+									>
 										<Box>
 											<Text color="gray">[{index}]: </Text>
 											<Text>{compatFeature}</Text>
@@ -275,7 +276,7 @@ const InkFeatureDetailApp: React.FC<FeatureDetailProps> = ({
 							<Text color="yellow">according_to:</Text>
 							{featureData.discouraged.according_to.map(
 								(link: string, index: number) => (
-									<Box key={index} marginLeft={2}>
+									<Box key={link} marginLeft={2}>
 										<Text color="gray">[{index}]: </Text>
 										<Text>{link}</Text>
 									</Box>
@@ -287,7 +288,7 @@ const InkFeatureDetailApp: React.FC<FeatureDetailProps> = ({
 										<Text color="yellow">alternatives:</Text>
 										{featureData.discouraged.alternatives.map(
 											(alt: string, index: number) => (
-												<Box key={index} marginLeft={2}>
+												<Box key={alt} marginLeft={2}>
 													<Text color="gray">[{index}]: </Text>
 													<Text>{alt}</Text>
 												</Box>
@@ -320,7 +321,7 @@ const InkFeatureDetailApp: React.FC<FeatureDetailProps> = ({
 						<Text color="cyan">redirect_targets:</Text>
 						{featureData.redirect_targets.map(
 							(target: string, index: number) => (
-								<Box key={index} marginLeft={2}>
+								<Box key={target} marginLeft={2}>
 									<Text color="gray">[{index}]: </Text>
 									<Text>{target}</Text>
 								</Box>

@@ -46,7 +46,7 @@ const InkMainMenuApp: React.FC<{ onExit: (result: MenuResult) => void }> = ({
 		}
 
 		// 数字キーでの直接選択
-		const num = parseInt(input);
+		const num = parseInt(input, 10);
 		if (num >= 1 && num <= 4) {
 			exit();
 			onExit({ choice: num, cancelled: false });

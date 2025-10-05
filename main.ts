@@ -117,6 +117,7 @@ async function executeChoice(choice: number) {
 		case 4:
 			console.log(t("exit"));
 			process.exit(0);
+			return;
 
 		default:
 			console.log(t("errorInvalidChoice"));

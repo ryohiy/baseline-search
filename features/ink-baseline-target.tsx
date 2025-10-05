@@ -30,7 +30,7 @@ const YearSelectionApp: React.FC<{
 	useEffect(() => {
 		const years = new Set<string>();
 
-		Object.entries(features).forEach(([key, feature]) => {
+		Object.entries(features).forEach(([_key, feature]) => {
 			if (
 				feature.kind === "feature" &&
 				feature.status &&
@@ -49,7 +49,7 @@ const YearSelectionApp: React.FC<{
 
 		const sortedYears = [...years].sort((a, b) => {
 			// 通常の年は逆順（新しい年が上）
-			return parseInt(b) - parseInt(a);
+			return parseInt(b, 10) - parseInt(a, 10);
 		});
 
 		setAvailableYears(sortedYears);
@@ -72,7 +72,7 @@ const YearSelectionApp: React.FC<{
 	}, [selectedIndex, availableYears]);
 
 	// キーボード入力処理
-	useInput((input, key) => {
+	useInput((_input, key) => {
 		if (key.escape) {
 			onExit({ selectedYear: null, cancelled: true });
 			return;
@@ -101,7 +101,7 @@ const YearSelectionApp: React.FC<{
 
 	// 各年の機能数を取得
 	const getFeatureCountForYear = (year: string): number => {
-		return Object.entries(features).filter(([key, feature]) => {
+		return Object.entries(features).filter(([_key, feature]) => {
 			if (
 				feature.kind === "feature" &&
 				feature.status &&
@@ -242,7 +242,7 @@ const FeatureSelectionApp: React.FC<{
 	}, [selectedIndex, featuresForYear]);
 
 	// キーボード入力処理
-	useInput((input, key) => {
+	useInput((_input, key) => {
 		if (key.escape) {
 			onExit({ selectedFeature: null, cancelled: true });
 			return;

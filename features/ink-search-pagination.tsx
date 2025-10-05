@@ -1,4 +1,4 @@
-import { Box, render, Text, useApp, useInput } from "ink";
+import { Box, render, Text, useInput } from "ink";
 import type React from "react";
 import { useEffect, useState } from "react";
 import { features } from "web-features";
@@ -19,7 +19,6 @@ const InkSearchPaginationApp: React.FC<{
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [isSearchMode, setIsSearchMode] = useState(false);
 	const [cursorVisible, setCursorVisible] = useState(true);
-	const { exit } = useApp();
 
 	const PAGE_SIZE = 10;
 
@@ -60,16 +59,15 @@ const InkSearchPaginationApp: React.FC<{
 	const endIndex = Math.min(startIndex + PAGE_SIZE, displayFeatures.length);
 	const currentPageFeatures = displayFeatures.slice(startIndex, endIndex);
 
-	// 検索語変更時の処理
-	useEffect(() => {
+	/**
+	 * 検索語を更新し、ページと選択インデックスをリセットする
+	 * ユーザーの検索入力に応じて呼び出され、検索結果の先頭ページ・先頭アイテムを選択状態にする
+	 */
+	const updateSearchTerm = (updater: string | ((prev: string) => string)) => {
+		setSearchTerm(updater);
 		setCurrentPage(0);
 		setSelectedIndex(0);
-	}, [searchTerm]);
-
-	// ページ変更時に選択インデックスをリセット
-	useEffect(() => {
-		setSelectedIndex(0);
-	}, [currentPage]);
+	};
 
 	// カーソル点滅効果（検索モード時のみ）
 	useEffect(() => {
@@ -127,7 +125,7 @@ const InkSearchPaginationApp: React.FC<{
 
 		if (key.ctrl && input === "c") {
 			// Ctrl+Cで検索語をクリア
-			setSearchTerm("");
+			updateSearchTerm("");
 			setIsSearchMode(false);
 			return;
 		}
@@ -150,12 +148,14 @@ const InkSearchPaginationApp: React.FC<{
 		if (key.leftArrow && currentPage > 0) {
 			// 左矢印で前のページ
 			setCurrentPage((prev) => Math.max(0, prev - 1));
+			setSelectedIndex(0);
 			return;
 		}
 
 		if (key.rightArrow && currentPage < totalPages - 1) {
 			// 右矢印で次のページ
 			setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1));
+			setSelectedIndex(0);
 			return;
 		}
 
@@ -163,22 +163,23 @@ const InkSearchPaginationApp: React.FC<{
 		if (isSearchMode) {
 			if (key.backspace || key.delete) {
 				// バックスペース
-				setSearchTerm((prev) => prev.slice(0, -1));
+				updateSearchTerm((prev) => prev.slice(0, -1));
 				return;
 			}
 
 			if (input && !key.ctrl && !key.meta && !/^[1-9]$/.test(input)) {
 				// 通常の文字入力（数字キーは除外してページジャンプを優先）
-				setSearchTerm((prev) => prev + input);
+				updateSearchTerm((prev) => prev + input);
 				return;
 			}
 		}
 
 		// 数字キーでページジャンプ（検索モード・通常モード問わず）
 		if (input && /^[1-9]$/.test(input)) {
-			const pageNum = parseInt(input) - 1;
+			const pageNum = parseInt(input, 10) - 1;
 			if (pageNum < totalPages) {
 				setCurrentPage(pageNum);
+				setSelectedIndex(0);
 			}
 			return;
 		}
