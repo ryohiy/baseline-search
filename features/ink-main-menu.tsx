@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { render, Text, Box, useInput, useApp } from "ink";
+import { Box, render, Text, useApp, useInput } from "ink";
+import type React from "react";
+import { useState } from "react";
 import { t } from "./i18n.js";
 
 interface MenuResult {

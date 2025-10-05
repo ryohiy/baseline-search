@@ -1,4 +1,4 @@
-import { getLanguage, Language } from "./language-config.js";
+import { getLanguage, type Language } from "./language-config.js";
 
 interface TextDefinitions {
 	// メインメニュー

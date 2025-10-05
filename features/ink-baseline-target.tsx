@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { render, Text, Box, useInput } from "ink";
+import { Box, render, Text, useInput } from "ink";
+import type React from "react";
+import { useEffect, useState } from "react";
 import { features } from "web-features";
 import { t } from "./i18n.js";
 

@@ -7,7 +7,7 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["dist", "node_modules", "*.log"]
+		"includes": ["**/*", "!dist", "!node_modules"]
 	},
 	"formatter": {
 		"enabled": true,

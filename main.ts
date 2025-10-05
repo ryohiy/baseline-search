@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
+import { t } from "./features/i18n.js";
 import { showInkMainMenu } from "./features/ink-main-menu.js";
 import {
 	parseLanguageFromArgs,
 	setLanguage,
 } from "./features/language-config.js";
-import { t } from "./features/i18n.js";
 
 // 基本的なプロセス終了ハンドリング
 process.on("SIGINT", () => {
@@ -20,7 +20,7 @@ async function executeChoice(choice: number) {
 	console.clear();
 
 	switch (choice) {
-		case 1:
+		case 1: {
 			const { startInkSearchPagination } = await import(
 				"./features/ink-search-pagination.js"
 			);
@@ -43,16 +43,15 @@ async function executeChoice(choice: number) {
 						searchResult.selectedFeature,
 					);
 					console.clear();
-					// 詳細表示後は検索画面に戻る
-					continue;
 				} else {
 					// 選択されなかった場合はメニューに戻る
 					break;
 				}
 			}
 			break;
+		}
 
-		case 2:
+		case 2: {
 			const { startInkRecentBaseline } = await import(
 				"./features/ink-recent-baseline.js"
 			);
@@ -75,16 +74,15 @@ async function executeChoice(choice: number) {
 						recentResult.selectedFeature,
 					);
 					console.clear();
-					// 詳細表示後は最近のBaseline画面に戻る
-					continue;
 				} else {
 					// 選択されなかった場合はメニューに戻る
 					break;
 				}
 			}
 			break;
+		}
 
-		case 3:
+		case 3: {
 			console.log(`=== ${t("mainMenuBaselineTarget")} ===\n`);
 			const { startInkBaselineTarget } = await import(
 				"./features/ink-baseline-target.js"
@@ -108,14 +106,13 @@ async function executeChoice(choice: number) {
 						baselineResult.selectedFeature,
 					);
 					console.clear();
-					// 詳細表示後はベースライン画面に戻る
-					continue;
 				} else {
 					// 選択されなかった場合はメニューに戻る
 					break;
 				}
 			}
 			break;
+		}
 
 		case 4:
 			console.log(t("exit"));
