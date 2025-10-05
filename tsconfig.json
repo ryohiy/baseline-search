@@ -1,16 +1,16 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "strict": false,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
-    "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true
-  },
-  "include": ["*.ts", "*.tsx", "features/**/*.ts", "features/**/*.tsx"],
-  "exclude": ["node_modules", "dist"]
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"strict": false,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"outDir": "./dist",
+		"jsx": "react-jsx",
+		"allowSyntheticDefaultImports": true
+	},
+	"include": ["*.ts", "*.tsx", "features/**/*.ts", "features/**/*.tsx"],
+	"exclude": ["node_modules", "dist"]
 }

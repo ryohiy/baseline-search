@@ -1,59 +1,59 @@
 {
-  "name": "baseline-search",
-  "version": "0.0.10",
-  "description": "A CLI tool to search and browse Baseline information from the terminal.",
-  "type": "module",
-  "main": "dist/main.js",
-  "bin": {
-    "baseline-search": "./dist/main.js"
-  },
-  "scripts": {
-    "build": "npx tsc",
-    "build:minify": "npm run build && npm run minify",
-    "minify": "find dist -name '*.js' -exec npx terser {} --compress --mangle --output {} \\;",
-    "start": "npm run build:minify && node dist/main.js",
-    "start:en": "npm run build:minify && node dist/main.js --en",
-    "start:ja": "npm run build:minify && node dist/main.js --ja",
-    "dev": "npm run build && node dist/main.js",
-    "dev:en": "npm run build && node dist/main.js --en",
-    "dev:ja": "npm run build && node dist/main.js --ja",
-    "prepublishOnly": "npm run build:minify",
-    "lint": "biome check .",
-    "format": "biome format --write .",
-    "check": "biome check --write ."
-  },
-  "files": [
-    "dist/",
-    "README.md",
-    "package.json"
-  ],
-  "keywords": [
-    "web-features",
-    "cli",
-    "browser-support",
-    "baseline"
-  ],
-  "author": "ryohiy",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ryohiy/baseline-search.git"
-  },
-  "homepage": "https://github.com/ryohiy/baseline-search#readme",
-  "dependencies": {
-    "compute-baseline": "latest",
-    "ink": "^4.4.1",
-    "react": "^18.2.0",
-    "web-features": "latest"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.2.5",
-    "@types/node": "^24.5.2",
-    "@types/react": "^18.2.0",
-    "terser": "^5.44.0",
-    "typescript": "^5.0.0"
-  },
-  "engines": {
-    "node": ">=16.0.0"
-  }
+	"name": "baseline-search",
+	"version": "0.0.10",
+	"description": "A CLI tool to search and browse Baseline information from the terminal.",
+	"type": "module",
+	"main": "dist/main.js",
+	"bin": {
+		"baseline-search": "./dist/main.js"
+	},
+	"scripts": {
+		"build": "npx tsc",
+		"build:minify": "npm run build && npm run minify",
+		"minify": "find dist -name '*.js' -exec npx terser {} --compress --mangle --output {} \\;",
+		"start": "npm run build:minify && node dist/main.js",
+		"start:en": "npm run build:minify && node dist/main.js --en",
+		"start:ja": "npm run build:minify && node dist/main.js --ja",
+		"dev": "npm run build && node dist/main.js",
+		"dev:en": "npm run build && node dist/main.js --en",
+		"dev:ja": "npm run build && node dist/main.js --ja",
+		"prepublishOnly": "npm run build:minify",
+		"lint": "biome check .",
+		"format": "biome format --write .",
+		"check": "biome check --write ."
+	},
+	"files": [
+		"dist/",
+		"README.md",
+		"package.json"
+	],
+	"keywords": [
+		"web-features",
+		"cli",
+		"browser-support",
+		"baseline"
+	],
+	"author": "ryohiy",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ryohiy/baseline-search.git"
+	},
+	"homepage": "https://github.com/ryohiy/baseline-search#readme",
+	"dependencies": {
+		"compute-baseline": "latest",
+		"ink": "^4.4.1",
+		"react": "^18.2.0",
+		"web-features": "latest"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.2.5",
+		"@types/node": "^24.5.2",
+		"@types/react": "^18.2.0",
+		"terser": "^5.44.0",
+		"typescript": "^5.0.0"
+	},
+	"engines": {
+		"node": ">=16.0.0"
+	}
 }
