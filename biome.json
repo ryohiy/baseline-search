@@ -6,7 +6,8 @@
 		"useIgnoreFile": false
 	},
 	"files": {
-		"ignoreUnknown": false
+		"ignoreUnknown": false,
+		"ignore": ["dist", "node_modules", "*.log"]
 	},
 	"formatter": {
 		"enabled": true,
