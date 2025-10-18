@@ -44,7 +44,7 @@ export class TestRig {
 	} {
 		const commandArgs = [this.cliPath, ...args];
 
-		const ptyProcess = pty.spawn("node", commandArgs, {
+		const ptyProcess = pty.spawn(process.execPath, commandArgs, {
 			name: "xterm-color",
 			cols: 80,
 			rows: 30,
