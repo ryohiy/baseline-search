@@ -1,6 +1,6 @@
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, dirname } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import * as pty from "@lydell/node-pty";
 
@@ -29,16 +29,16 @@ export class TestRig {
 			.replace(/[^a-z0-9]/g, "-")
 			.replace(/-+/g, "-");
 
-		this.testDir = mkdtempSync(join(tmpdir(), `baseline-search-${sanitizedName}-`));
+		this.testDir = mkdtempSync(
+			join(tmpdir(), `baseline-search-${sanitizedName}-`),
+		);
 	}
 
 	/**
 	 * インタラクティブモードでCLIを起動
 	 * gemini-cliのrunInteractiveを参考
 	 */
-	runInteractive(
-		...args: string[]
-	): {
+	runInteractive(...args: string[]): {
 		ptyProcess: pty.IPty;
 		promise: Promise<{ exitCode: number; signal?: number; output: string }>;
 	} {
@@ -115,7 +115,7 @@ export class TestRig {
 	 * gemini-cliのctrl-c-exit.test.tsから
 	 */
 	cleanAnsiCodes(text: string): string {
-		// eslint-disable-next-line no-control-regex
+		// biome-ignore lint/suspicious/noControlCharactersInRegex: ANSI escape codes need control characters
 		return text.replace(/\x1b\[[0-9;]*m/g, "");
 	}
 

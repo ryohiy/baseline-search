@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { TestRig } from "./test-helper.js";
 
 describe("Basic E2E Tests", () => {
@@ -29,10 +29,7 @@ describe("Basic E2E Tests", () => {
 			100,
 		);
 
-		expect(
-			menuDisplayed,
-			"Expected main menu to be displayed",
-		).toBeTruthy();
+		expect(menuDisplayed, "Expected main menu to be displayed").toBeTruthy();
 
 		// ANSI制御文字を除去してテキストを検証
 		const cleanOutput = rig.cleanAnsiCodes(output);
