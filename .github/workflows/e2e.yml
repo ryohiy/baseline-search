@@ -53,7 +53,6 @@ jobs:
         env:
           FORCE_COLOR: '1'
           VERBOSE: 'true'
-          CI: 'true'
         run: 'npm test'
 
   e2e_mac:
@@ -87,7 +86,6 @@ jobs:
         env:
           FORCE_COLOR: '1'
           VERBOSE: 'true'
-          CI: 'true'
         run: 'npm test'
 
   e2e_windows:
@@ -121,7 +119,6 @@ jobs:
         env:
           FORCE_COLOR: '1'
           VERBOSE: 'true'
-          CI: 'true'
         run: 'npm test'
         shell: 'pwsh'
 
