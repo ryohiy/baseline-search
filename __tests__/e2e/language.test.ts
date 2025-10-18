@@ -23,9 +23,10 @@ describe("Language Support E2E Tests", () => {
 		});
 
 		// メニューが表示されるまで待機（CI環境では初回起動に時間がかかる）
+		// Inkの初期レンダリングに30秒以上かかることがあるため、十分な時間を確保
 		const displayed = await rig.poll(
 			() => output.includes("Baseline Search"),
-			30000,
+			60000,
 			100,
 		);
 

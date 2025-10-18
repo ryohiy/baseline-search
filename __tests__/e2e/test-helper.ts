@@ -65,7 +65,6 @@ export class TestRig {
 		}
 
 		let output = "";
-		let stderr = "";
 		let dataChunks = 0;
 		ptyProcess.onData((data) => {
 			output += data;

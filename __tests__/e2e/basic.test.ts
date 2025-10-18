@@ -23,9 +23,10 @@ describe("Basic E2E Tests", () => {
 		});
 
 		// メインメニューが表示されるまで待機（CI環境では初回起動に時間がかかる）
+		// Inkの初期レンダリングに30秒以上かかることがあるため、十分な時間を確保
 		const menuDisplayed = await rig.poll(
 			() => output.includes("Baseline Search"),
-			30000,
+			60000,
 			100,
 		);
 
@@ -67,7 +68,7 @@ describe("Basic E2E Tests", () => {
 		});
 
 		// メインメニューが表示されるまで待機（CI環境では初回起動に時間がかかる）
-		await rig.poll(() => output.includes("Baseline Search"), 30000, 100);
+		await rig.poll(() => output.includes("Baseline Search"), 60000, 100);
 
 		// 'q'キーで終了
 		ptyProcess.write("q");
