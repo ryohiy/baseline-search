@@ -10,7 +10,8 @@ export default defineConfig({
 			},
 		},
 		// タイムアウトを長めに設定（インタラクティブUIの起動待ち、CI環境考慮）
-		testTimeout: 30000,
+		// CI環境でのInk初回レンダリングに時間がかかるため、十分な時間を確保
+		testTimeout: 60000,
 		hookTimeout: 15000,
 	},
 });

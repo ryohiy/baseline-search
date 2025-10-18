@@ -65,6 +65,7 @@ export class TestRig {
 		}
 
 		let output = "";
+		let stderr = "";
 		let dataChunks = 0;
 		ptyProcess.onData((data) => {
 			output += data;
@@ -77,6 +78,14 @@ export class TestRig {
 				process.stdout.write(data);
 			}
 		});
+
+		// stderr capture (PTY typically merges, but log if separate)
+		if (typeof ptyProcess.onData !== "undefined") {
+			// Node-pty doesn't have separate stderr, but let's log process errors
+			if (process.env.VERBOSE === "true") {
+				console.log("PTY process started, waiting for output...");
+			}
+		}
 
 		const promise = new Promise<{
 			exitCode: number;

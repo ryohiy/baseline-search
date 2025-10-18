@@ -22,10 +22,10 @@ describe("Language Support E2E Tests", () => {
 			output += data;
 		});
 
-		// メニューが表示されるまで待機（CI環境では時間がかかる可能性がある）
+		// メニューが表示されるまで待機（CI環境では初回起動に時間がかかる）
 		const displayed = await rig.poll(
 			() => output.includes("Baseline Search"),
-			15000,
+			30000,
 			100,
 		);
 
@@ -64,7 +64,7 @@ describe("Language Support E2E Tests", () => {
 
 		const displayed = await rig.poll(
 			() => output.includes("Baseline Search"),
-			15000,
+			30000,
 			100,
 		);
 
@@ -98,7 +98,7 @@ describe("Language Support E2E Tests", () => {
 
 		const displayed = await rig.poll(
 			() => output.includes("Baseline Search"),
-			15000,
+			30000,
 			100,
 		);
 

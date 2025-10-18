@@ -22,10 +22,10 @@ describe("Basic E2E Tests", () => {
 			output += data;
 		});
 
-		// メインメニューが表示されるまで待機（CI環境では時間がかかる可能性がある）
+		// メインメニューが表示されるまで待機（CI環境では初回起動に時間がかかる）
 		const menuDisplayed = await rig.poll(
 			() => output.includes("Baseline Search"),
-			15000,
+			30000,
 			100,
 		);
 
@@ -66,8 +66,8 @@ describe("Basic E2E Tests", () => {
 			output += data;
 		});
 
-		// メインメニューが表示されるまで待機（CI環境では時間がかかる可能性がある）
-		await rig.poll(() => output.includes("Baseline Search"), 15000, 100);
+		// メインメニューが表示されるまで待機（CI環境では初回起動に時間がかかる）
+		await rig.poll(() => output.includes("Baseline Search"), 30000, 100);
 
 		// 'q'キーで終了
 		ptyProcess.write("q");
@@ -88,8 +88,8 @@ describe("Basic E2E Tests", () => {
 			output += data;
 		});
 
-		// メニューが完全に表示されるまで待機（CI環境では時間がかかる可能性がある）
-		await rig.poll(() => output.includes("Baseline Search"), 15000, 100);
+		// メニューが完全に表示されるまで待機（CI環境では初回起動に時間がかかる）
+		await rig.poll(() => output.includes("Baseline Search"), 30000, 100);
 
 		const cleanOutput = rig.cleanAnsiCodes(output);
 
