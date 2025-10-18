@@ -77,6 +77,7 @@ describe("Language Support E2E Tests", () => {
 		await rig.poll(() => output.includes("Baseline Search"), 5000, 100);
 
 		const cleanOutput = rig.cleanAnsiCodes(output);
+		console.log(cleanOutput);
 
 		// 日本語メニューの確認
 		expect(cleanOutput).toContain("どの機能を利用しますか");
