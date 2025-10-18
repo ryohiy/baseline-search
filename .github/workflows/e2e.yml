@@ -50,6 +50,8 @@ jobs:
         run: 'npm run build'
 
       - name: 'Run E2E tests'
+        env:
+          FORCE_COLOR: '1'
         run: 'npm test'
 
   e2e_mac:
@@ -80,6 +82,8 @@ jobs:
         run: 'npm run build'
 
       - name: 'Run E2E tests'
+        env:
+          FORCE_COLOR: '1'
         run: 'npm test'
 
   e2e_windows:
@@ -110,6 +114,8 @@ jobs:
         run: 'npm run build'
 
       - name: 'Run E2E tests'
+        env:
+          FORCE_COLOR: '1'
         run: 'npm test'
         shell: 'pwsh'
 

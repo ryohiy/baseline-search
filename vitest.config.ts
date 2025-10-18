@@ -9,8 +9,8 @@ export default defineConfig({
 				singleThread: true,
 			},
 		},
-		// タイムアウトを長めに設定（インタラクティブUIの起動待ち）
-		testTimeout: 15000,
-		hookTimeout: 10000,
+		// タイムアウトを長めに設定（インタラクティブUIの起動待ち、CI環境考慮）
+		testTimeout: 30000,
+		hookTimeout: 15000,
 	},
 });

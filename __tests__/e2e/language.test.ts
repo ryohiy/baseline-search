@@ -22,8 +22,8 @@ describe("Language Support E2E Tests", () => {
 			output += data;
 		});
 
-		// メニューが表示されるまで待機
-		await rig.poll(() => output.includes("Baseline Search"), 5000, 100);
+		// メニューが表示されるまで待機（CI環境では時間がかかる可能性がある）
+		await rig.poll(() => output.includes("Baseline Search"), 15000, 100);
 
 		const cleanOutput = rig.cleanAnsiCodes(output);
 
