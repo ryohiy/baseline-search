@@ -44,6 +44,14 @@ export class TestRig {
 	} {
 		const commandArgs = [this.cliPath, ...args];
 
+		if (process.env.VERBOSE === "true") {
+			console.log("=== TestRig: Starting PTY process ===");
+			console.log(`Command: ${process.execPath}`);
+			console.log(`Args: ${JSON.stringify(commandArgs)}`);
+			console.log(`CWD: ${this.testDir || process.cwd()}`);
+			console.log(`CLI Path exists: ${require("fs").existsSync(this.cliPath)}`);
+		}
+
 		const ptyProcess = pty.spawn(process.execPath, commandArgs, {
 			name: "xterm-color",
 			cols: 80,
@@ -52,11 +60,20 @@ export class TestRig {
 			env: process.env as { [key: string]: string },
 		});
 
+		if (process.env.VERBOSE === "true") {
+			console.log(`PTY Process PID: ${ptyProcess.pid}`);
+		}
+
 		let output = "";
+		let dataChunks = 0;
 		ptyProcess.onData((data) => {
 			output += data;
+			dataChunks++;
 			// デバッグ用（環境変数で制御）
 			if (process.env.VERBOSE === "true") {
+				console.log(
+					`[Chunk ${dataChunks}] Received ${data.length} chars: ${data.substring(0, 100)}`,
+				);
 				process.stdout.write(data);
 			}
 		});
@@ -67,6 +84,11 @@ export class TestRig {
 			output: string;
 		}>((resolve) => {
 			ptyProcess.onExit(({ exitCode, signal }) => {
+				if (process.env.VERBOSE === "true") {
+					console.log(
+						`=== PTY Process exited: code=${exitCode}, signal=${signal}, output length=${output.length}, chunks=${dataChunks} ===`,
+					);
+				}
 				resolve({ exitCode, signal, output });
 			});
 		});
@@ -113,10 +135,21 @@ export class TestRig {
 	/**
 	 * ANSI制御文字を除去
 	 * gemini-cliのctrl-c-exit.test.tsから
+	 * より包括的なパターンで全てのANSI制御シーケンスを除去
 	 */
 	cleanAnsiCodes(text: string): string {
 		// biome-ignore lint/suspicious/noControlCharactersInRegex: ANSI escape codes need control characters
-		return text.replace(/\x1b\[[0-9;]*m/g, "");
+		return (
+			text
+				// カラーコード: \x1b[...m
+				.replace(/\x1b\[[0-9;]*m/g, "")
+				// カーソル移動・画面制御: \x1b[...H, \x1b[...J など
+				.replace(/\x1b\[[0-9;]*[HJKfABCDsuhl]/gi, "")
+				// その他の制御シーケンス: \x1b[?...h, \x1b[?...l など
+				.replace(/\x1b\[\?[0-9;]*[hl]/g, "")
+				// OSC シーケンス
+				.replace(/\x1b\][^\x07]*\x07/g, "")
+		);
 	}
 
 	/**
