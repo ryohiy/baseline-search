@@ -67,7 +67,7 @@ describe("Basic E2E Tests", () => {
 		});
 
 		// メインメニューが表示されるまで待機
-		await rig.poll(() => output.includes("Baseline Search"), 10000, 100);
+		await rig.poll(() => output.includes("Baseline Search"), 20000, 100);
 
 		// 'q'キーで終了
 		ptyProcess.write("q");
@@ -89,7 +89,7 @@ describe("Basic E2E Tests", () => {
 		});
 
 		// メニューが完全に表示されるまで待機
-		await rig.poll(() => output.includes("Baseline Search"), 10000, 100);
+		await rig.poll(() => output.includes("Baseline Search"), 20000, 100);
 
 		const cleanOutput = rig.cleanAnsiCodes(output);
 

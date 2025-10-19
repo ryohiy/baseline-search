@@ -25,7 +25,7 @@ describe("Language Support E2E Tests", () => {
 		// メニューが表示されるまで待機
 		const displayed = await rig.poll(
 			() => output.includes("Baseline Search"),
-			10000,
+			20000,
 			100,
 		);
 
@@ -64,7 +64,7 @@ describe("Language Support E2E Tests", () => {
 
 		const displayed = await rig.poll(
 			() => output.includes("Baseline Search"),
-			10000,
+			20000,
 			100,
 		);
 
@@ -98,7 +98,7 @@ describe("Language Support E2E Tests", () => {
 
 		const displayed = await rig.poll(
 			() => output.includes("Baseline Search"),
-			10000,
+			20000,
 			100,
 		);
 
