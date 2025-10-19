@@ -21,46 +21,16 @@ concurrency:
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
-  e2e_linux:
-    name: 'E2E Test (Linux, Node ${{ matrix.node-version }})'
-    runs-on: 'ubuntu-latest'
+  e2e_tests:
+    name: 'E2E Test (${{ matrix.os }}, Node ${{ matrix.node-version }})'
+    runs-on: '${{ matrix.os }}'
     strategy:
       fail-fast: false
       matrix:
-        node-version:
-          - '20.x'
-          - '18.x'
-
-    steps:
-      - name: 'Checkout'
-        uses: 'actions/checkout@v4'
-        with:
-          ref: '${{ github.event.inputs.branch_ref || github.ref }}'
-
-      - name: 'Set up Node.js ${{ matrix.node-version }}'
-        uses: 'actions/setup-node@v4'
-        with:
-          node-version: '${{ matrix.node-version }}'
-          cache: 'npm'
-
-      - name: 'Install dependencies'
-        run: 'npm ci'
-
-      - name: 'Build project'
-        run: 'npm run build'
-
-      - name: 'Run E2E tests'
-        env:
-          FORCE_COLOR: '1'
-          VERBOSE: 'true'
-        run: 'npm test'
-
-  e2e_mac:
-    name: 'E2E Test (macOS, Node ${{ matrix.node-version }})'
-    runs-on: 'macos-latest'
-    strategy:
-      fail-fast: false
-      matrix:
+        os:
+          - 'ubuntu-latest'
+          - 'macos-latest'
+          - 'windows-latest'
         node-version:
           - '20.x'
 
@@ -87,56 +57,18 @@ jobs:
           FORCE_COLOR: '1'
           VERBOSE: 'true'
         run: 'npm test'
-
-  e2e_windows:
-    name: 'E2E Test (Windows, Node ${{ matrix.node-version }})'
-    runs-on: 'windows-latest'
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version:
-          - '20.x'
-
-    steps:
-      - name: 'Checkout'
-        uses: 'actions/checkout@v4'
-        with:
-          ref: '${{ github.event.inputs.branch_ref || github.ref }}'
-
-      - name: 'Set up Node.js ${{ matrix.node-version }}'
-        uses: 'actions/setup-node@v4'
-        with:
-          node-version: '${{ matrix.node-version }}'
-          cache: 'npm'
-
-      - name: 'Install dependencies'
-        run: 'npm ci'
-
-      - name: 'Build project'
-        run: 'npm run build'
-
-      - name: 'Run E2E tests'
-        env:
-          FORCE_COLOR: '1'
-          VERBOSE: 'true'
-        run: 'npm test'
-        shell: 'pwsh'
 
   e2e:
     name: 'E2E Tests Summary'
     if: always()
     needs:
-      - 'e2e_linux'
-      - 'e2e_mac'
-      - 'e2e_windows'
+      - 'e2e_tests'
     runs-on: 'ubuntu-latest'
     steps:
       - name: 'Check E2E test results'
         run: |
-          if [[ (${{ needs.e2e_linux.result }} != 'success' && ${{ needs.e2e_linux.result }} != 'skipped') || \
-                (${{ needs.e2e_mac.result }} != 'success' && ${{ needs.e2e_mac.result }} != 'skipped') || \
-                (${{ needs.e2e_windows.result }} != 'success' && ${{ needs.e2e_windows.result }} != 'skipped') ]]; then
-            echo "❌ One or more E2E jobs failed."
+          if [[ ${{ needs.e2e_tests.result }} != 'success' && ${{ needs.e2e_tests.result }} != 'skipped' ]]; then
+            echo "❌ E2E tests failed."
             exit 1
           fi
-          echo "✅ All E2E jobs passed!"
+          echo "✅ All E2E tests passed!"
