@@ -22,11 +22,10 @@ describe("Language Support E2E Tests", () => {
 			output += data;
 		});
 
-		// メニューが表示されるまで待機（CI環境では初回起動に時間がかかる）
-		// Inkの初期レンダリングに30秒以上かかることがあるため、十分な時間を確保
+		// メニューが表示されるまで待機
 		const displayed = await rig.poll(
 			() => output.includes("Baseline Search"),
-			60000,
+			10000,
 			100,
 		);
 
@@ -65,7 +64,7 @@ describe("Language Support E2E Tests", () => {
 
 		const displayed = await rig.poll(
 			() => output.includes("Baseline Search"),
-			30000,
+			10000,
 			100,
 		);
 
@@ -99,7 +98,7 @@ describe("Language Support E2E Tests", () => {
 
 		const displayed = await rig.poll(
 			() => output.includes("Baseline Search"),
-			30000,
+			10000,
 			100,
 		);
 

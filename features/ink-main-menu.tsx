@@ -14,12 +14,6 @@ const InkMainMenuApp: React.FC<{ onExit: (result: MenuResult) => void }> = ({
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const { exit } = useApp();
 
-	// biome-ignore lint/suspicious/noConsole: Debug logging for CI
-	if (process.env.VERBOSE === "true") {
-		// biome-ignore lint/suspicious/noConsole: Debug logging for CI
-		console.error("[DEBUG] InkMainMenuApp: Component rendering");
-	}
-
 	const menuItems = [
 		{ key: 1, label: t("mainMenuFreeSearch") },
 		{ key: 2, label: t("mainMenuRecentBaseline") },
@@ -87,29 +81,12 @@ const InkMainMenuApp: React.FC<{ onExit: (result: MenuResult) => void }> = ({
 
 export function showInkMainMenu(): Promise<MenuResult> {
 	return new Promise((resolve) => {
-		// biome-ignore lint/suspicious/noConsole: Debug logging for CI
-		if (process.env.VERBOSE === "true") {
-			// biome-ignore lint/suspicious/noConsole: Debug logging for CI
-			console.error("[DEBUG] showInkMainMenu: Starting render");
-			// biome-ignore lint/suspicious/noConsole: Debug logging for CI
-			console.error("[DEBUG] stdin isTTY:", process.stdin.isTTY);
-			// biome-ignore lint/suspicious/noConsole: Debug logging for CI
-			console.error("[DEBUG] stdout isTTY:", process.stdout.isTTY);
-			// biome-ignore lint/suspicious/noConsole: Debug logging for CI
-			console.error("[DEBUG] CI env:", process.env.CI);
-		}
 		// Explicitly pass streams to avoid CI detection issues
 		render(<InkMainMenuApp onExit={resolve} />, {
 			stdout: process.stdout,
 			stdin: process.stdin,
 			stderr: process.stderr,
-			debug: Boolean(process.env.VERBOSE),
 			patchConsole: false,
 		});
-		// biome-ignore lint/suspicious/noConsole: Debug logging for CI
-		if (process.env.VERBOSE === "true") {
-			// biome-ignore lint/suspicious/noConsole: Debug logging for CI
-			console.error("[DEBUG] showInkMainMenu: Render called");
-		}
 	});
 }
