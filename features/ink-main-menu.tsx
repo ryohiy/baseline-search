@@ -81,7 +81,13 @@ const InkMainMenuApp: React.FC<{ onExit: (result: MenuResult) => void }> = ({
 
 export function showInkMainMenu(): Promise<MenuResult> {
 	return new Promise((resolve) => {
-		// Use default streams, no explicit options
-		render(<InkMainMenuApp onExit={resolve} />);
+		// Explicitly pass streams to avoid CI detection issues
+		render(<InkMainMenuApp onExit={resolve} />, {
+			stdout: process.stdout,
+			stdin: process.stdin,
+			stderr: process.stderr,
+			debug: Boolean(process.env.VERBOSE),
+			patchConsole: false,
+		});
 	});
 }
