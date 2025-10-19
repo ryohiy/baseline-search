@@ -27,5 +27,10 @@ npx baseline-search --ja
 
 This tool uses the [web-features](https://github.com/web-platform-dx/web-features) dataset.
 
+## Acknowledgments
+
+The E2E test implementation in this project was inspired by [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli)'s integration test approach.
+
 ## License
+
 MIT

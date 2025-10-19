@@ -1,3 +1,19 @@
+/**
+ * E2E テストヘルパー
+ *
+ * このファイルは google-gemini/gemini-cli のテストヘルパーを参考にしています:
+ * https://github.com/google-gemini/gemini-cli/blob/main/integration-tests/test-helper.ts
+ * https://github.com/google-gemini/gemini-cli/blob/main/integration-tests/ctrl-c-exit.test.ts
+ *
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Modified for baseline-search:
+ * - Simplified to minimal functionality needed for baseline-search CLI testing
+ * - Removed telemetry, sandbox, and complex model interaction features
+ * - Adapted for baseline-search specific CLI structure
+ */
+
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
@@ -5,11 +21,6 @@ import { fileURLToPath } from "node:url";
 import * as pty from "@lydell/node-pty";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-/**
- * gemini-cliのTestRigを参考にした簡略版
- * baseline-search向けに最小限の機能のみ実装
- */
 export class TestRig {
 	cliPath: string;
 	testDir: string | null = null;
