@@ -86,7 +86,6 @@ export function showInkMainMenu(): Promise<MenuResult> {
 			stdout: process.stdout,
 			stdin: process.stdin,
 			stderr: process.stderr,
-			debug: Boolean(process.env.VERBOSE),
 			patchConsole: false,
 		});
 	});
