@@ -84,14 +84,19 @@ export function showInkMainMenu(): Promise<MenuResult> {
 		/**
 		 * Explicitly configure Ink render options for E2E testing compatibility in CI environments.
 		 *
-		 * - debug: false (default value)
+		 * - debug: Boolean(process.env.VERBOSE)
 		 *   Ink detects CI environments (via is-in-ci package) and changes its rendering behavior.
-		 *   When running in CI with debug: false, Ink enters "CI mode" where it only outputs
-		 *   the final frame at unmount, instead of real-time rendering for each update.
+		 *   When running in CI with debug: false (default), Ink enters "CI mode" where it only
+		 *   outputs the final frame at unmount, instead of real-time rendering for each update.
 		 *   (Technically: isInCi = !debug && isCI in Ink's internal logic)
 		 *
-		 *   This project's E2E tests expect consistent behavior across local and CI environments.
-		 *   We explicitly set debug: false to acknowledge and document this default behavior.
+		 *   This project's E2E tests use PTY (pseudo-terminal) to capture output in real-time.
+		 *   In CI environments, we need debug: true to bypass CI mode and enable real-time output,
+		 *   otherwise the tests will timeout waiting for output that only comes at unmount.
+		 *
+		 *   We control this via VERBOSE environment variable:
+		 *   - VERBOSE=true (E2E tests in CI): debug: true → real-time output
+		 *   - VERBOSE not set (normal usage): debug: false → default behavior
 		 *
 		 *   References:
 		 *   - https://github.com/vadimdemedes/ink/blob/4ab3e2d2/readme.md#debug
@@ -108,7 +113,7 @@ export function showInkMainMenu(): Promise<MenuResult> {
 			stdout: process.stdout,
 			stdin: process.stdin,
 			stderr: process.stderr,
-			debug: false,
+			debug: Boolean(process.env.VERBOSE),
 		});
 	});
 }
