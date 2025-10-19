@@ -82,32 +82,32 @@ const InkMainMenuApp: React.FC<{ onExit: (result: MenuResult) => void }> = ({
 export function showInkMainMenu(): Promise<MenuResult> {
 	return new Promise((resolve) => {
 		/**
-		 * Explicitly configure Ink render options for E2E testing compatibility in CI environments.
+		 * CI環境でのE2Eテスト互換性のため、Ink renderオプションを明示的に設定
 		 *
 		 * - debug: Boolean(process.env.VERBOSE)
-		 *   Ink detects CI environments (via is-in-ci package) and changes its rendering behavior.
-		 *   When running in CI with debug: false (default), Ink enters "CI mode" where it only
-		 *   outputs the final frame at unmount, instead of real-time rendering for each update.
-		 *   (Technically: isInCi = !debug && isCI in Ink's internal logic)
+		 *   Inkは is-in-ci パッケージを使ってCI環境を検知し、レンダリング動作を変更します。
+		 *   CI環境で debug: false（デフォルト）の場合、Inkは「CIモード」に入り、
+		 *   各更新のリアルタイムレンダリングではなく、unmount時の最終フレームのみを出力します。
+		 *   （技術的には: Ink内部で isInCi = !debug && isCI という判定が行われます）
 		 *
-		 *   This project's E2E tests use PTY (pseudo-terminal) to capture output in real-time.
-		 *   In CI environments, we need debug: true to bypass CI mode and enable real-time output,
-		 *   otherwise the tests will timeout waiting for output that only comes at unmount.
+		 *   このプロジェクトのE2EテストはPTY（疑似端末）を使ってリアルタイムに出力をキャプチャします。
+		 *   CI環境では debug: true が必要で、これによりCIモードをバイパスしてリアルタイム出力を有効にします。
+		 *   そうしないと、unmount時にしか来ない出力を待ってテストがタイムアウトしてしまいます。
 		 *
-		 *   We control this via VERBOSE environment variable:
-		 *   - VERBOSE=true (E2E tests in CI): debug: true → real-time output
-		 *   - VERBOSE not set (normal usage): debug: false → default behavior
+		 *   VERBOSE環境変数で制御:
+		 *   - VERBOSE=true (CI上のE2Eテスト): debug: true → リアルタイム出力
+		 *   - VERBOSE未設定 (通常使用): debug: false → デフォルト動作
 		 *
-		 *   References:
+		 *   参考文献:
 		 *   - https://github.com/vadimdemedes/ink/blob/4ab3e2d2/readme.md#debug
 		 *   - https://github.com/search?q=repo%3Avadimdemedes%2Fink%20!this.options.debug&type=code
 		 *
-		 * - Other options (stdout, stdin, stderr)
-		 *   These are explicitly set to their default values as of October 2025 for safety
-		 *   and to ensure consistent behavior even if defaults change in future versions.
-		 *   - stdout: process.stdout (default)
-		 *   - stdin: process.stdin (default)
-		 *   - stderr: process.stderr (Note: may not be officially supported by Ink render options)
+		 * - その他のオプション (stdout, stdin, stderr)
+		 *   安全性のため、2025年10月現在のデフォルト値を明示的に指定しています。
+		 *   将来バージョンでデフォルトが変更されても一貫した動作を保証するためです。
+		 *   - stdout: process.stdout (デフォルト値)
+		 *   - stdin: process.stdin (デフォルト値)
+		 *   - stderr: process.stderr (注: Ink renderオプションで正式サポートされていない可能性あり)
 		 */
 		render(<InkMainMenuApp onExit={resolve} />, {
 			stdout: process.stdout,
