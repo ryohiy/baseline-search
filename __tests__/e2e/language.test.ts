@@ -23,20 +23,9 @@ describe("Language Support E2E Tests", () => {
 		});
 
 		// メニューが表示されるまで待機
-		const displayed = await rig.poll(
-			() => output.includes("Baseline Search"),
-			20000,
-			100,
-		);
-
-		// デバッグ出力
-		console.log("===== Test: English by default =====");
-		console.log(`Poll result: ${displayed}`);
-		console.log(`Output length: ${output.length}`);
-		console.log("Raw output (first 500):", output.substring(0, 500));
+		await rig.poll(() => output.includes("Baseline Search"), 20000, 100);
 
 		const cleanOutput = rig.cleanAnsiCodes(output);
-		console.log("Clean output:", cleanOutput);
 
 		// 英語メニューの確認
 		expect(cleanOutput).toContain("Which feature would you like to use");
@@ -62,20 +51,9 @@ describe("Language Support E2E Tests", () => {
 			output += data;
 		});
 
-		const displayed = await rig.poll(
-			() => output.includes("Baseline Search"),
-			20000,
-			100,
-		);
-
-		// デバッグ出力
-		console.log("===== Test: English with --en flag =====");
-		console.log(`Poll result: ${displayed}`);
-		console.log(`Output length: ${output.length}`);
-		console.log("Raw output (first 500):", output.substring(0, 500));
+		await rig.poll(() => output.includes("Baseline Search"), 20000, 100);
 
 		const cleanOutput = rig.cleanAnsiCodes(output);
-		console.log("Clean output:", cleanOutput);
 
 		// 英語メニューの確認
 		expect(cleanOutput).toContain("Which feature would you like to use");
@@ -96,22 +74,9 @@ describe("Language Support E2E Tests", () => {
 			output += data;
 		});
 
-		const displayed = await rig.poll(
-			() => output.includes("Baseline Search"),
-			20000,
-			100,
-		);
-
-		// デバッグ出力
-		console.log("===== Test: Japanese with --ja flag =====");
-		console.log(`Poll result: ${displayed}`);
-		console.log(`Output length: ${output.length}`);
-		console.log("Raw output (first 500):", output.substring(0, 500));
+		await rig.poll(() => output.includes("Baseline Search"), 20000, 100);
 
 		const cleanOutput = rig.cleanAnsiCodes(output);
-		console.log("===== Clean Output Start =====");
-		console.log(cleanOutput);
-		console.log("===== Clean Output End =====");
 
 		// 日本語メニューの確認
 		expect(cleanOutput).toContain("どの機能を利用しますか");

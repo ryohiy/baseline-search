@@ -29,20 +29,10 @@ describe("Basic E2E Tests", () => {
 			100,
 		);
 
-		// デバッグ出力
-		console.log("===== Raw Output (first 500 chars) =====");
-		console.log(output.substring(0, 500));
-		console.log("===== Raw Output (length) =====");
-		console.log(`Total length: ${output.length}`);
-
 		expect(menuDisplayed, "Expected main menu to be displayed").toBeTruthy();
 
 		// ANSI制御文字を除去してテキストを検証
 		const cleanOutput = rig.cleanAnsiCodes(output);
-
-		console.log("===== Clean Output =====");
-		console.log(cleanOutput);
-		console.log("===== Clean Output End =====");
 
 		// メニュー項目が表示されていることを確認
 		expect(cleanOutput).toContain("Baseline Search");
