@@ -49,7 +49,9 @@ export class TestRig {
 			console.log(`Command: ${process.execPath}`);
 			console.log(`Args: ${JSON.stringify(commandArgs)}`);
 			console.log(`CWD: ${this.testDir || process.cwd()}`);
-			console.log(`CLI Path exists: ${require("fs").existsSync(this.cliPath)}`);
+			console.log(
+				`CLI Path exists: ${require("node:fs").existsSync(this.cliPath)}`,
+			);
 		}
 
 		const ptyProcess = pty.spawn(process.execPath, commandArgs, {
@@ -146,16 +148,19 @@ export class TestRig {
 	 * より包括的なパターンで全てのANSI制御シーケンスを除去
 	 */
 	cleanAnsiCodes(text: string): string {
-		// biome-ignore lint/suspicious/noControlCharactersInRegex: ANSI escape codes need control characters
 		return (
 			text
 				// カラーコード: \x1b[...m
+				// biome-ignore lint/suspicious/noControlCharactersInRegex: ANSI escape codes need control characters
 				.replace(/\x1b\[[0-9;]*m/g, "")
 				// カーソル移動・画面制御: \x1b[...H, \x1b[...J など
+				// biome-ignore lint/suspicious/noControlCharactersInRegex: ANSI escape codes need control characters
 				.replace(/\x1b\[[0-9;]*[HJKfABCDsuhl]/gi, "")
 				// その他の制御シーケンス: \x1b[?...h, \x1b[?...l など
+				// biome-ignore lint/suspicious/noControlCharactersInRegex: ANSI escape codes need control characters
 				.replace(/\x1b\[\?[0-9;]*[hl]/g, "")
 				// OSC シーケンス
+				// biome-ignore lint/suspicious/noControlCharactersInRegex: ANSI escape codes need control characters
 				.replace(/\x1b\][^\x07]*\x07/g, "")
 		);
 	}
