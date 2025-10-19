@@ -98,7 +98,14 @@ export function showInkMainMenu(): Promise<MenuResult> {
 			// biome-ignore lint/suspicious/noConsole: Debug logging for CI
 			console.error("[DEBUG] CI env:", process.env.CI);
 		}
-		render(<InkMainMenuApp onExit={resolve} />);
+		// Explicitly pass streams to avoid CI detection issues
+		render(<InkMainMenuApp onExit={resolve} />, {
+			stdout: process.stdout,
+			stdin: process.stdin,
+			stderr: process.stderr,
+			debug: Boolean(process.env.VERBOSE),
+			patchConsole: false,
+		});
 		// biome-ignore lint/suspicious/noConsole: Debug logging for CI
 		if (process.env.VERBOSE === "true") {
 			// biome-ignore lint/suspicious/noConsole: Debug logging for CI
