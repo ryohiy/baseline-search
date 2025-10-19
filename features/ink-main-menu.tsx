@@ -81,12 +81,34 @@ const InkMainMenuApp: React.FC<{ onExit: (result: MenuResult) => void }> = ({
 
 export function showInkMainMenu(): Promise<MenuResult> {
 	return new Promise((resolve) => {
-		// Explicitly pass streams to avoid CI detection issues
+		/**
+		 * Explicitly configure Ink render options for E2E testing compatibility in CI environments.
+		 *
+		 * - debug: false (default value)
+		 *   Ink detects CI environments (via is-in-ci package) and changes its rendering behavior.
+		 *   When running in CI with debug: false, Ink enters "CI mode" where it only outputs
+		 *   the final frame at unmount, instead of real-time rendering for each update.
+		 *   (Technically: isInCi = !debug && isCI in Ink's internal logic)
+		 *
+		 *   This project's E2E tests expect consistent behavior across local and CI environments.
+		 *   We explicitly set debug: false to acknowledge and document this default behavior.
+		 *
+		 *   References:
+		 *   - https://github.com/vadimdemedes/ink/blob/4ab3e2d2/readme.md#debug
+		 *   - https://github.com/search?q=repo%3Avadimdemedes%2Fink%20!this.options.debug&type=code
+		 *
+		 * - Other options (stdout, stdin, stderr)
+		 *   These are explicitly set to their default values as of October 2025 for safety
+		 *   and to ensure consistent behavior even if defaults change in future versions.
+		 *   - stdout: process.stdout (default)
+		 *   - stdin: process.stdin (default)
+		 *   - stderr: process.stderr (Note: may not be officially supported by Ink render options)
+		 */
 		render(<InkMainMenuApp onExit={resolve} />, {
 			stdout: process.stdout,
 			stdin: process.stdin,
 			stderr: process.stderr,
-			patchConsole: false,
+			debug: false,
 		});
 	});
 }
