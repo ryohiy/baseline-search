@@ -27,5 +27,10 @@ npx baseline-search --ja
 
 このツールは[web-features](https://github.com/web-platform-dx/web-features)データセットを使用しています。
 
+## 謝辞
+
+このプロジェクトのE2Eテスト実装は、[google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli)のインテグレーションテストアプローチを参考にしています。
+
 ## ライセンス
+
 MIT

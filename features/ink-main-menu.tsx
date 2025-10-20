@@ -81,6 +81,47 @@ const InkMainMenuApp: React.FC<{ onExit: (result: MenuResult) => void }> = ({
 
 export function showInkMainMenu(): Promise<MenuResult> {
 	return new Promise((resolve) => {
-		render(<InkMainMenuApp onExit={resolve} />);
+		/**
+		 * CI環境でのE2Eテスト互換性のため、Ink renderオプションを明示的に設定
+		 *
+		 * - debug: Boolean(process.env.VERBOSE)
+		 *   Inkは is-in-ci パッケージを使ってCI環境を検知し、レンダリング動作を変更します。
+		 *
+		 *   CI環境 + debug: false（デフォルト）の場合:
+		 *   - onRenderメソッド内で、静的出力のみを即座に stdout.write() で書き込み
+		 *   - 動的出力（メインUI）は lastOutput に保存されるが、即座には出力されない
+		 *   - 中間フレームはスキップされ、unmount時に最終フレームのみが出力される
+		 *
+		 *   CI環境 + debug: true の場合:
+		 *   - onRenderメソッド内で、CI環境判定より前に debugモードの処理が実行される
+		 *   - 静的出力と動的出力の両方が累積され、毎回全て stdout.write() で出力される
+		 *   - すべてのフレームが出力されるため、中間フレームもスキップされない
+		 *
+		 *   このプロジェクトのE2EテストはPTY（疑似端末）を使ってリアルタイムに出力をキャプチャします。
+		 *   CI環境では debug: true が必要で、これにより中間フレームもリアルタイム出力されます。
+		 *   そうしないと、unmount時にしか来ない最終フレームを待ってテストがタイムアウトします。
+		 *
+		 *   VERBOSE環境変数で制御:
+		 *   - VERBOSE=true (CI上のE2Eテスト): debug: true → 全フレームをリアルタイム出力
+		 *   - VERBOSE未設定 (通常使用): debug: false → CI最適化（最終フレームのみ）
+		 *
+		 *   参考文献:
+		 *   - https://github.com/vadimdemedes/ink/blob/4ab3e2d2/readme.md#debug
+		 *   - https://github.com/vadimdemedes/ink/blob/4ab3e2d2/src/ink.tsx#L148-L204 (onRender)
+		 *   - https://github.com/vadimdemedes/ink/blob/4ab3e2d2/src/ink.tsx#L290-L293 (unmount)
+		 *
+		 * - その他のオプション (stdout, stdin, stderr)
+		 *   安全性のため、2025年10月現在のデフォルト値を明示的に指定しています。
+		 *   将来バージョンでデフォルトが変更されても一貫した動作を保証するためです。
+		 *   - stdout: process.stdout
+		 *   - stdin: process.stdin
+		 *   - stderr: process.stderr
+		 */
+		render(<InkMainMenuApp onExit={resolve} />, {
+			stdout: process.stdout,
+			stdin: process.stdin,
+			stderr: process.stderr,
+			debug: Boolean(process.env.VERBOSE),
+		});
 	});
 }

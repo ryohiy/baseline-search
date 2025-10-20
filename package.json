@@ -20,7 +20,9 @@
 		"prepublishOnly": "npm run build:minify",
 		"lint": "biome check .",
 		"format": "biome format --write .",
-		"check": "biome check --write ."
+		"check": "biome check --write .",
+		"test": "npm run build && vitest run",
+		"test:watch": "npm run build && vitest"
 	},
 	"files": [
 		"dist/",
@@ -48,10 +50,12 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.5",
-		"@types/node": "^24.5.2",
+		"@lydell/node-pty": "^1.1.0",
+		"@types/node": "^24.8.1",
 		"@types/react": "^18.2.0",
 		"terser": "^5.44.0",
-		"typescript": "^5.0.0"
+		"typescript": "^5.0.0",
+		"vitest": "^3.2.4"
 	},
 	"engines": {
 		"node": ">=16.0.0"
