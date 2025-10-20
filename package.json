@@ -43,19 +43,19 @@
 	},
 	"homepage": "https://github.com/ryohiy/baseline-search#readme",
 	"dependencies": {
-		"compute-baseline": "latest",
-		"ink": "^4.4.1",
-		"react": "^18.2.0",
-		"web-features": "latest"
+		"compute-baseline": "0.4.0",
+		"ink": "4.4.1",
+		"react": "18.3.1",
+		"web-features": "3.5.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.5",
-		"@lydell/node-pty": "^1.1.0",
-		"@types/node": "^24.8.1",
-		"@types/react": "^18.2.0",
-		"terser": "^5.44.0",
-		"typescript": "^5.0.0",
-		"vitest": "^3.2.4"
+		"@lydell/node-pty": "1.1.0",
+		"@types/node": "24.8.1",
+		"@types/react": "18.3.24",
+		"terser": "5.44.0",
+		"typescript": "5.9.2",
+		"vitest": "3.2.4"
 	},
 	"engines": {
 		"node": ">=16.0.0"
