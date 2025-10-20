@@ -55,6 +55,6 @@ jobs:
           node-version: '20.x'
 
       - name: Create GitHub Release
-        run: npx changelogithub
+        run: npx changelogithub@13.16.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
