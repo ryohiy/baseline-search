@@ -15,6 +15,8 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    # Using npm OIDC Trusted Publishing
+    # Reference: https://docs.npmjs.com/trusted-publishers#github-actions-configuration
     permissions:
       contents: read
       id-token: write
@@ -25,17 +27,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
-          node-version: '20.x'
+          node-version: '22.x'
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Update npm to latest version
+        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: npm ci
 
       - name: Publish to npm
-        run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish
 
   github-release:
     name: Create GitHub Release
@@ -52,9 +55,4 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
-          node-version: '20.x'
-
-      - name: Create GitHub Release
-        run: npx changelogithub@13.16.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          node-version: '22.x'
