@@ -54,7 +54,7 @@
 		"@types/node": "24.8.1",
 		"@types/react": "18.3.24",
 		"terser": "5.44.0",
-		"typescript": "5.9.2",
+		"typescript": "5.9.3",
 		"vitest": "3.2.4"
 	},
 	"engines": {
