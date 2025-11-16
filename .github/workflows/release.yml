@@ -13,7 +13,7 @@ jobs:
   npm-publish:
     name: Publish to npm
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     timeout-minutes: 10
     # Using npm OIDC Trusted Publishing
     # Reference: https://docs.npmjs.com/trusted-publishers#github-actions-configuration
