@@ -44,7 +44,7 @@
 	"homepage": "https://github.com/ryohiy/baseline-search#readme",
 	"dependencies": {
 		"compute-baseline": "0.4.0",
-		"ink": "4.4.1",
+		"ink": "6.4.0",
 		"react": "18.3.1",
 		"web-features": "3.9.0"
 	},
